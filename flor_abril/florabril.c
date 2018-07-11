@@ -15,9 +15,16 @@
 
 #define PI 3.14159265
 
-int angulo = 0;
+double angulo = 0;
 
-int petalas[4][4] = {
+double petalas[4][4] = {
+    {__WIDTH-600, __HEIGHT-300, __WIDTH-600, __HEIGHT-500},
+    {__WIDTH-200, __HEIGHT-300, __WIDTH-200, __HEIGHT-500},
+    {__WIDTH-500, __HEIGHT-200, __WIDTH-300, __HEIGHT-200},
+    {__WIDTH-500, __HEIGHT-600, __WIDTH-300, __HEIGHT-600}
+};
+
+double originais[4][4] = {
     {__WIDTH-600, __HEIGHT-300, __WIDTH-600, __HEIGHT-500},
     {__WIDTH-200, __HEIGHT-300, __WIDTH-200, __HEIGHT-500},
     {__WIDTH-500, __HEIGHT-200, __WIDTH-300, __HEIGHT-200},
@@ -28,8 +35,8 @@ void _cabo(){
     glLineWidth(6);
     glBegin(GL_LINES);
         glColor3f(1.0f, 1.0f, 1.0f);
-        glVertex2f(__ZERO+390, __HEIGHT/2);
-        glVertex2f(__ZERO+390, __ZERO-10);
+        glVertex2d(__ZERO+390, __HEIGHT/2);
+        glVertex2d(__ZERO+390, __ZERO-10);
     glEnd();
 }
 
@@ -40,10 +47,10 @@ void _petalas(){
     for(i = 0; i < 4; i++){
         alpha += 0.1;
         glBegin(GL_TRIANGLES);
-            glColor3f(0.5f, 0.0f + alpha, 0.0f + alpha);
-            glVertex2f(XMEIO, YMEIO);
-            glVertex2f(petalas[i][0], petalas[i][1]);
-            glVertex2f(petalas[i][2], petalas[i][3]);
+            glColor3f(0.5f, 0.0f, 0.0f);
+            glVertex2d(XMEIO, YMEIO);
+            glVertex2d(petalas[i][0], petalas[i][1]);
+            glVertex2d(petalas[i][2], petalas[i][3]);
         glEnd();
     }
 
@@ -53,27 +60,56 @@ void girar(unsigned char key, int x, int y){
     int i;
     float alpha = 0.1;
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
-
+    double new_x, new_y;
+    double theta;
     switch(key){
         case 'g':
-            angulo += 5;
+            angulo = 10;
             for(i = 0; i < 4; i++){
-                alpha += 0.1;
-                petalas[i][0] = petalas[i][0]*cos(angulo*(PI/180)) + petalas[i][1]*sin(angulo*(PI/180));
-                petalas[i][1] = -petalas[i][0]*sin(angulo*(PI/180)) + petalas[i][1]*cos(angulo*(PI/180));
-                petalas[i][2] = petalas[i][2]*cos(angulo*(PI/180)) + petalas[i][3]*sin(angulo*(PI/180));
-                petalas[i][3] = -petalas[i][2]*sin(angulo*(PI/180)) + petalas[i][3]*cos(angulo*(PI/180));
+                theta = (double) angulo*PI/180.0;
+                new_x = (XMEIO - petalas[i][0])*cos(theta) - (YMEIO - petalas[i][1])*sin(theta);
+                new_y = (YMEIO - petalas[i][1])*cos(theta) + (XMEIO - petalas[i][0])*sin(theta);
+
+                new_x += XMEIO;
+                new_y += YMEIO;
+
+                petalas[i][0] = new_x;
+                petalas[i][1] = new_y;
+
+                new_x = (XMEIO - petalas[i][2])*cos(theta) - (YMEIO - petalas[i][3])*sin(theta);
+                new_y = (YMEIO - petalas[i][3])*cos(theta) + (XMEIO - petalas[i][2])*sin(theta);
+                
+                new_x += XMEIO;
+                new_y += YMEIO;
+
+                petalas[i][2] = new_x;
+                petalas[i][3] = new_y;
+
             }
         break;
+
         case 'h':
-            angulo *= -1;
-            angulo += 5;
+            angulo = -10;
             for(i = 0; i < 4; i++){
-                alpha += 0.1;
-                petalas[i][0] = petalas[i][0]*cos(angulo*(PI/180)) + petalas[i][1]*sin(angulo*(PI/180));
-                petalas[i][1] = -petalas[i][0]*sin(angulo*(PI/180)) + petalas[i][1]*cos(angulo*(PI/180));
-                petalas[i][2] = petalas[i][2]*cos(angulo*(PI/180)) + petalas[i][3]*sin(angulo*(PI/180));
-                petalas[i][3] = -petalas[i][2]*sin(angulo*(PI/180)) + petalas[i][3]*cos(angulo*(PI/180));
+                theta = (double) angulo*PI/180.0;
+                new_x = (XMEIO - petalas[i][0])*cos(theta) - (YMEIO - petalas[i][1])*sin(theta);
+                new_y = (YMEIO - petalas[i][1])*cos(theta) + (XMEIO - petalas[i][0])*sin(theta);
+
+                new_x += XMEIO;
+                new_y += YMEIO;
+
+                petalas[i][0] = new_x;
+                petalas[i][1] = new_y;
+
+                new_x = (XMEIO - petalas[i][2])*cos(theta) - (YMEIO - petalas[i][3])*sin(theta);
+                new_y = (YMEIO - petalas[i][3])*cos(theta) + (XMEIO - petalas[i][2])*sin(theta);
+                
+                new_x += XMEIO;
+                new_y += YMEIO;
+
+                petalas[i][2] = new_x;
+                petalas[i][3] = new_y;
+
             }
         break;
     }
