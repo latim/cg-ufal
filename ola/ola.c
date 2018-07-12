@@ -5,6 +5,7 @@
 #endif
 
 #include <math.h>
+#include <string.h>
 
 #define INICIO_X 100
 #define INICIO_Y 20
