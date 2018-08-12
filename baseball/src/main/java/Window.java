@@ -23,7 +23,6 @@ public class Window {
 
         Baseball baseball = new Baseball();
 
-
         gljpanel.addGLEventListener( new GLEventListener() {
 
             @Override
@@ -79,7 +78,7 @@ public class Window {
         pane.add(botoes, BorderLayout.LINE_START);
         pane.add(gljpanel, BorderLayout.CENTER);
 
-        jframe.setSize( 800, 480 );
+        jframe.setSize( 800, 800 );
         jframe.setVisible( true );
     }
 
