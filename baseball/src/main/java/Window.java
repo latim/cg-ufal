@@ -5,25 +5,34 @@ import com.jogamp.opengl.GLCapabilities;
 import com.jogamp.opengl.awt.GLJPanel;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Window {
 
-    static final int TICK_MIN = 0;
-    static final int TICK_INIT = 2;
-    static final int TICK_MAX = 10;
+    private static final int TICK_MIN = 0;
+    private static final int TICK_INIT = 2;
+    private static final int TICK_MAX = 10;
+
+    private static double firstX;
+    private static double firstY;
+
+    private static boolean second = false;
 
     public static void main( String [] args ) {
         GLProfile glprofile = GLProfile.getDefault();
         GLCapabilities glcapabilities = new GLCapabilities( glprofile );
         GLJPanel gljpanel = new GLJPanel( glcapabilities );
 
-        Baseball baseball = new Baseball();
+        Baseball baseball = new Baseball(new HashSet<>(), new ArrayList<>());
 
         gljpanel.addGLEventListener( new GLEventListener() {
 
@@ -49,7 +58,14 @@ public class Window {
         gljpanel.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println(e.getX() + " " + e.getY());
+                if(second) {
+                    second = false;
+                    baseball.plotPoint(gljpanel, firstX, firstY, e.getX(), e.getY());
+                } else {
+                    second = true;
+                    firstX = e.getX();
+                    firstY = e.getY();
+                }
             }
 
             @Override
@@ -76,7 +92,16 @@ public class Window {
         JRadioButton retaButton = new JRadioButton("Equação da reta");
         JRadioButton bressButton = new JRadioButton("Bressham");
 
+        retaButton.setSelected(true);
+
         JSlider espessura = new JSlider(JSlider.HORIZONTAL, TICK_MIN, TICK_MAX, TICK_INIT);
+
+        espessura.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                baseball.setLineWidth(espessura.getValue());
+            }
+        });
 
         JLabel lOpcao = new JLabel("Escolha o tipo de modelagem");
         JLabel lEspessura = new JLabel("Escolha a espessura das retas");
