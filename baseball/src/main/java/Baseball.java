@@ -1,10 +1,5 @@
-import com.jogamp.newt.event.WindowAdapter;
-import com.jogamp.newt.opengl.GLWindow;
-import com.jogamp.newt.event.WindowEvent;
 import com.jogamp.opengl.*;
-import com.jogamp.opengl.fixedfunc.GLMatrixFunc;
 import com.jogamp.opengl.glu.GLU;
-import com.jogamp.opengl.util.FPSAnimator;
 
 public class Baseball {
 
@@ -25,8 +20,12 @@ public class Baseball {
     }
 
     protected void render( GL2 gl2, int width, int height ) {
+        System.out.println(height);
+        gl2.glClearColor(0.9f, 0.6f, 0.1f, 1.0f);
+        gl2.glClear(GL.GL_COLOR_BUFFER_BIT);
+
         if(type == 0) {
-            gl2.glClear(GL.GL_COLOR_BUFFER_BIT);
+
 
             gl2.glLoadIdentity();
 
@@ -88,12 +87,10 @@ public class Baseball {
 
             gl2.glBegin(GL.GL_TRIANGLE_FAN);
             gl2.glColor3f(0, 1, 0);
-
             gl2.glVertex2d(width/2 - 90, (height - 520));
             gl2.glVertex2d(width/2, (height-430));
             gl2.glVertex2d(width/2 + 90, (height - 520));
             gl2.glVertex2d(width/2, (height-625));
-
             gl2.glEnd();
 
             gl2.glBegin(GL.GL_TRIANGLE_FAN);
@@ -234,6 +231,53 @@ public class Baseball {
             gl2.glVertex2d(width/2 + 3, height - 642);
             gl2.glVertex2d(width/2 + 3, height - 652);
             gl2.glVertex2d(width/2 - 3, height - 652);
+            gl2.glEnd();
+
+            //Banco dos treinadores
+
+            gl2.glLineWidth(2);
+            gl2.glBegin(GL2.GL_LINES);
+            gl2.glColor3f(1, 1, 1);
+            gl2.glVertex2d(width/2 + 75, height-560);
+            gl2.glVertex2d(width/2 + 100, height-530);
+            gl2.glEnd();
+
+            gl2.glLineWidth(2);
+            gl2.glBegin(GL2.GL_LINES);
+            gl2.glColor3f(1, 1, 1);
+            gl2.glVertex2d(width/2 - 75, height-560);
+            gl2.glVertex2d(width/2 - 100, height-530);
+            gl2.glEnd();
+
+            gl2.glLineWidth(2);
+            gl2.glBegin(GL2.GL_LINES);
+            gl2.glColor3f(1, 1, 1);
+            gl2.glVertex2d(width/2 + 75, height-560);
+            gl2.glVertex2d(width/2 + 85, height-570);
+            gl2.glEnd();
+
+            gl2.glLineWidth(2);
+            gl2.glBegin(GL2.GL_LINES);
+            gl2.glColor3f(1, 1, 1);
+            gl2.glVertex2d(width/2 + 100, height-530);
+            gl2.glVertex2d(width/2 + 110, height-540);
+            gl2.glEnd();
+
+
+            gl2.glLineWidth(2);
+            gl2.glBegin(GL2.GL_LINES);
+            gl2.glLineWidth(2);
+            gl2.glColor3f(1, 1, 1);
+            gl2.glVertex2d(width/2 - 75, height-560);
+            gl2.glVertex2d(width/2 - 85, height-570);
+            gl2.glEnd();
+
+
+            gl2.glLineWidth(2);
+            gl2.glBegin(GL2.GL_LINES);
+            gl2.glColor3f(1, 1, 1);
+            gl2.glVertex2d(width/2 - 100, height-530);
+            gl2.glVertex2d(width/2 - 110, height-540);
             gl2.glEnd();
 
         }
