@@ -3,6 +3,8 @@
 
 int year = 0;
 int day = 0;
+int year2 = 0;
+int day2 = 0;
 
 void display(void){
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -21,6 +23,27 @@ void display(void){
 		glutWireSphere(0.2, 10, 8);
 	glPopMatrix();
 
+	glPushMatrix();
+		glRotatef((GLfloat) year2, 0.0, 1.0, 0.0);
+		glTranslatef(-2.0, 0.0, 0.0);
+		glRotatef((GLfloat) day2, 0.0, 1.0, 0.0);
+		glutWireSphere(0.2, 10, 8);
+	glPopMatrix();
+
+	glPushMatrix();
+		glRotatef((GLfloat) year2, 1.0, 0.0, 0.0);
+		glTranslatef(-2.0, 0.0, 0.5);
+		glRotatef((GLfloat) day2, 1.0, 0.0, 0.0);
+		glutWireSphere(0.05, 10, 8);
+	glPopMatrix();
+
+	glPushMatrix();
+		glRotatef((GLfloat) year2, 1.0, 1.0, 0.0);
+		glTranslatef(-2.0, 0.0, -0.5);
+		glRotatef((GLfloat) day2, 1.0, 1.0, 0.0);
+		glutWireSphere(0.05, 10, 8);
+	glPopMatrix();
+
 	glutSwapBuffers();
 }
 
@@ -31,18 +54,22 @@ void init(void){
 void keyboard(unsigned char key, int x, int y){
 	switch(key){
 		case 'd':
+			day2 = (day2-10) % 360;
 			day = (day+10) % 360;
 			glutPostRedisplay();
 		break;
 		case 'D':
 			day = (day-10) % 360;
+			day2 = (day2+10) % 360;
 			glutPostRedisplay();
 		break;
 		case 'y':
 			year = (year+5) % 360;
+			year2 = (year2-5) % 360;
 			glutPostRedisplay();
 		break;
 		case 'Y':
+			year2 = (year2+5) % 360;
 			year = (year-5) % 360;
 			glutPostRedisplay();
 		break;
