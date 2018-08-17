@@ -9,10 +9,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -31,6 +28,8 @@ public class Window {
         GLProfile glprofile = GLProfile.getDefault();
         GLCapabilities glcapabilities = new GLCapabilities( glprofile );
         GLJPanel gljpanel = new GLJPanel( glcapabilities );
+
+        JPanel botoes = new JPanel();
 
         Baseball baseball = new Baseball(new HashSet<>(), new ArrayList<>());
 
@@ -110,13 +109,30 @@ public class Window {
         buttonGroup.add(retaButton);
         buttonGroup.add(bressButton);
 
-        JPanel botoes = new JPanel();
+        JButton botaoCor = new JButton("Selecione a cor");
+        botaoCor.setOpaque(true);
+        botaoCor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Color color = JColorChooser.showDialog(null, "Escolha a cor para as retas", Color.BLUE);
+                System.out.println(color);
+
+                if(color != null) {
+                    botaoCor.setBackground(color);
+                    baseball.setColor(color.getRed()/255, color.getGreen(), color.getBlue());
+                }
+
+            }
+        });
+
+
         botoes.setLayout(new BoxLayout(botoes, BoxLayout.Y_AXIS));
         botoes.add(lOpcao);
         botoes.add(retaButton);
         botoes.add(bressButton);
         botoes.add(lEspessura);
         botoes.add(espessura);
+        botoes.add(botaoCor);
 
         final JFrame jframe = new JFrame( "Baseball" );
         jframe.addWindowListener( new WindowAdapter() {

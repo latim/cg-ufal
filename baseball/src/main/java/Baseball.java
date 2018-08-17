@@ -11,10 +11,14 @@ public class Baseball {
     private int type = 0;
 
     private Set<Point2D> listaPontosProibidos;
-    private List<Point2D[]> listaPontosArquibancada;
+    private List<Ponto> listaPontosArquibancada;
     private int lineWidth;
-    
-    public Baseball(Set<Point2D> listaPontosProibidos, List<Point2D[]> listaPontosArquibancada){
+
+    private double r;
+    private double g;
+    private double b;
+
+    public Baseball(Set<Point2D> listaPontosProibidos, List<Ponto> listaPontosArquibancada){
         this.listaPontosProibidos = listaPontosProibidos;
         this.listaPontosArquibancada = listaPontosArquibancada;
         this.lineWidth = 0;
@@ -26,7 +30,7 @@ public class Baseball {
 
         // coordinate system origin at lower left with width and height same as the window
         GLU glu = new GLU();
-        glu.gluOrtho2D( 0.0f, width, 0.0f, height );
+        glu.gluOrtho2D(0.0f, width, 0.0f, height);
 
         gl2.glMatrixMode( GL2.GL_MODELVIEW );
         gl2.glLoadIdentity();
@@ -44,7 +48,9 @@ public class Baseball {
             point2DS[0] = firstPoint;
             point2DS[1] = secondPoint;
 
-            listaPontosArquibancada.add(point2DS);
+            Ponto ponto = new Ponto(point2DS, r, g, b);
+
+            listaPontosArquibancada.add(ponto);
         }
 
         display.repaint();
@@ -304,15 +310,21 @@ public class Baseball {
 
             gl2.glLineWidth(lineWidth);
 
-            for (Point2D[] point2DS : listaPontosArquibancada){
+            for (Ponto point2DS : listaPontosArquibancada){
                 gl2.glBegin(GL2.GL_LINES);
-                gl2.glColor3f(1, 1, 1);
-                gl2.glVertex2d(point2DS[0].getX(), point2DS[0].getY());
-                gl2.glVertex2d(point2DS[1].getX(), point2DS[1].getY());
+                gl2.glColor3d(point2DS.getR(), point2DS.getG(), point2DS.getB());
+                gl2.glVertex2d(point2DS.getPoint2DS()[0].getX(), point2DS.getPoint2DS()[0].getY());
+                gl2.glVertex2d(point2DS.getPoint2DS()[1].getX(), point2DS.getPoint2DS()[1].getY());
                 gl2.glEnd();
             }
 
         }
+    }
+
+    public void setColor(double r, double g, double b){
+        this.r = r;
+        this.g = g;
+        this.b = b;
     }
 
     public void setLineWidth(int lineWidth) {
