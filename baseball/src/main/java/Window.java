@@ -125,7 +125,6 @@ public class Window {
             }
         });
 
-
         botoes.setLayout(new BoxLayout(botoes, BoxLayout.Y_AXIS));
         botoes.add(lOpcao);
         botoes.add(retaButton);
