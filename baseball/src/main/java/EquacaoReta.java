@@ -27,8 +27,6 @@ public class EquacaoReta {
             double x = centro_x + raio * -Math.cos(theta);
             double y = centro_y + raio * -Math.sin(theta);
 
-            listaPontosProibidos.add(new Point2D(x, y));
-
             gl2.glVertex2d(x, y);
         }
 
@@ -81,7 +79,6 @@ public class EquacaoReta {
 
         gl2.glVertex2d(width/2 + 90, (height - 520));
 
-
         for(int i = 180; i <= 270; i++){
 
             double theta = (i * Math.PI) / 360;
@@ -92,7 +89,6 @@ public class EquacaoReta {
 
             gl2.glVertex2d(x, y);
         }
-
 
         for(int i = 360; i <= 500; i++){
 
@@ -118,7 +114,6 @@ public class EquacaoReta {
 
             double x = width/2 + 17 * -Math.cos(theta);
             double y = (height-430) + 17 * -Math.sin(theta);
-
 
             gl2.glVertex2d(x, y);
         }
@@ -255,10 +250,10 @@ public class EquacaoReta {
 
         //plotagem dos pontos
 
-        gl2.glLineWidth(lineWidth);
 
         for (Ponto point2DS : listaPontosArquibancada){
             gl2.glBegin(GL2.GL_LINES);
+            gl2.glLineWidth(point2DS.getTamanho());
             gl2.glColor3d(point2DS.getR(), point2DS.getG(), point2DS.getB());
             gl2.glVertex2d(point2DS.getPoint2DS()[0].getX(), point2DS.getPoint2DS()[0].getY());
             gl2.glVertex2d(point2DS.getPoint2DS()[1].getX(), point2DS.getPoint2DS()[1].getY());

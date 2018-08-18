@@ -48,7 +48,7 @@ public class Baseball {
             point2DS[0] = firstPoint;
             point2DS[1] = secondPoint;
 
-            Ponto ponto = new Ponto(point2DS, r, g, b);
+            Ponto ponto = new Ponto(point2DS, r, g, b, lineWidth);
 
             listaPontosArquibancada.add(ponto);
         }

@@ -91,6 +91,26 @@ public class Window {
         JRadioButton retaButton = new JRadioButton("Equação da reta");
         JRadioButton bressButton = new JRadioButton("Bressham");
 
+        retaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(retaButton.isSelected()){
+                    baseball.setType(0);
+                    gljpanel.repaint();
+                }
+            }
+        });
+
+        bressButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(bressButton.isSelected()){
+                    baseball.setType(1);
+                    gljpanel.repaint();
+                }
+            }
+        });
+
         retaButton.setSelected(true);
 
         JSlider espessura = new JSlider(JSlider.HORIZONTAL, TICK_MIN, TICK_MAX, TICK_INIT);
