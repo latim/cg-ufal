@@ -251,8 +251,8 @@ public class EquacaoReta {
         //plotagem dos pontos
 
         for (Ponto point2DS : listaPontosArquibancada){
-            gl2.glBegin(GL2.GL_LINES);
             gl2.glLineWidth(point2DS.getTamanho());
+            gl2.glBegin(GL2.GL_LINES);
             gl2.glColor3d(point2DS.getR(), point2DS.getG(), point2DS.getB());
             gl2.glVertex2d(point2DS.getPoint2DS()[0].getX(), point2DS.getPoint2DS()[0].getY());
             gl2.glVertex2d(point2DS.getPoint2DS()[1].getX(), point2DS.getPoint2DS()[1].getY());

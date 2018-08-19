@@ -54,40 +54,6 @@ public class Window {
             }
         });
 
-        gljpanel.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if(second) {
-                    second = false;
-                    baseball.plotPoint(gljpanel, firstX, firstY, e.getX(), e.getY());
-                } else {
-                    second = true;
-                    firstX = e.getX();
-                    firstY = e.getY();
-                }
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
-        });
-
         JRadioButton retaButton = new JRadioButton("Equação da reta");
         JRadioButton bressButton = new JRadioButton("Bressham");
 
@@ -139,9 +105,8 @@ public class Window {
 
                 if(color != null) {
                     botaoCor.setBackground(color);
-                    baseball.setColor(color.getRed()/255, color.getGreen(), color.getBlue());
+                    baseball.setColor((double) color.getRed()/255, (double) color.getGreen()/255, (double) color.getBlue()/255);
                 }
-
             }
         });
 
@@ -152,6 +117,41 @@ public class Window {
         botoes.add(lEspessura);
         botoes.add(espessura);
         botoes.add(botaoCor);
+
+        gljpanel.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(second) {
+                    second = false;
+                    baseball.plotPoint(gljpanel, firstX, firstY, e.getX(), e.getY(), espessura.getValue());
+
+                } else {
+                    second = true;
+                    firstX = e.getX();
+                    firstY = e.getY();
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
 
         final JFrame jframe = new JFrame( "Baseball" );
         jframe.addWindowListener( new WindowAdapter() {

@@ -38,7 +38,7 @@ public class Baseball {
         gl2.glViewport(0, 0, width, height);
     }
 
-    protected void plotPoint(GLJPanel display, double x, double y, double x1, double y1){
+    protected void plotPoint(GLJPanel display, double x, double y, double x1, double y1, int espessura){
         Point2D firstPoint = new Point2D(x, display.getSurfaceHeight() - y);
         Point2D secondPoint = new Point2D(x1, display.getSurfaceHeight() - y1);
 
@@ -48,7 +48,7 @@ public class Baseball {
             point2DS[0] = firstPoint;
             point2DS[1] = secondPoint;
 
-            Ponto ponto = new Ponto(point2DS, r, g, b, lineWidth);
+            Ponto ponto = new Ponto(point2DS, r, g, b, espessura);
 
             listaPontosArquibancada.add(ponto);
         }
