@@ -186,7 +186,7 @@ public class EquacaoReta {
 
         //retangulos dos rebatedores
 
-        gl2.glBegin(GL.GL_TRIANGLE_FAN);
+        gl2.glBegin(GL.GL_LINE_LOOP);
         gl2.glColor3f(1, 1, 1);
         gl2.glVertex2d(width/2 - 10, height - 632);
         gl2.glVertex2d(width/2 - 3, height - 632);
@@ -194,7 +194,7 @@ public class EquacaoReta {
         gl2.glVertex2d(width/2 - 10, height - 642);
         gl2.glEnd();
 
-        gl2.glBegin(GL.GL_TRIANGLE_FAN);
+        gl2.glBegin(GL.GL_LINE_LOOP);
         gl2.glColor3f(1, 1, 1);
         gl2.glVertex2d(width/2 + 10, height - 632);
         gl2.glVertex2d(width/2 + 3, height - 632);
@@ -202,7 +202,7 @@ public class EquacaoReta {
         gl2.glVertex2d(width/2 + 10, height - 642);
         gl2.glEnd();
 
-        gl2.glBegin(GL.GL_TRIANGLE_FAN);
+        gl2.glBegin(GL.GL_LINE_LOOP);
         gl2.glColor3f(1, 1, 1);
         gl2.glVertex2d(width/2 - 3, height - 642);
         gl2.glVertex2d(width/2 + 3, height - 642);
@@ -249,7 +249,6 @@ public class EquacaoReta {
         gl2.glEnd();
 
         //plotagem dos pontos
-
 
         for (Ponto point2DS : listaPontosArquibancada){
             gl2.glBegin(GL2.GL_LINES);

@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class Baseball {
 
-    private int type = 1;
+    private int type = 0;
 
     private Set<Point2D> listaPontosProibidos;
     private List<Ponto> listaPontosArquibancada;

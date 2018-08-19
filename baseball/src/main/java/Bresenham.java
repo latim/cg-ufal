@@ -6,17 +6,23 @@ import java.util.Set;
 
 public class Bresenham {
 
+    private static int limitArc;
+
     public static void display(GL2 gl2, List<Ponto> listaPontosArquibancada, Set<Point2D> listaPontosProibidos, int width, int height, int lineWidth){
 
+        limitArc = 0;
         arc(width/2, (height - 490), ((height/2 - 190)), gl2, 0.6f, 0.8f, 0.2f, true, true, true, true, true, true, true, true);
+        limitArc = 295;
         arc(width/2, (height - 640), ((height/2) + 70), gl2, 0.6, 0.8, 0.2, false, true, true, false, false, false, false, false);
-        arc(width/2, (height - 640), (height/2 - 100), gl2, 1f, 1f, 0.11f, false, true, true, false, false, false, false, false);
+        limitArc = 185;
+        arc(width/2, (height - 640), (height/2 - 100), gl2, 0.95f, 0.88f, 0.11f, false, true, true, false, false, false, false, false);
+        limitArc = 0;
 
         //quadrado do meio
-        line(width/2 - 90, height-520, width/2, height-430, gl2, 1, 1, 1, 1);
-        line(width/2 + 90, height-520, width/2, height-625, gl2, 1, 1, 1, 1);
-        line(width/2, (height-430), width/2 + 90, (height - 520), gl2, 1, 1, 1, 1);
-        line(width/2 - 90, (height - 520), width/2, (height-625), gl2, 1, 1, 1, 1);
+        line(width/2 - 90, height-520, width/2, height-430, gl2, 0.1f, 1f, 0.2f, 1);
+        line(width/2 + 90, height-520, width/2, height-625, gl2, 0.1f, 1f, 0.2f, 1);
+        line(width/2, (height-430), width/2 + 90, (height - 520), gl2, 0.1f, 1f, 0.2f, 1);
+        line(width/2 - 90, (height - 520), width/2, (height-625), gl2, 0.1f, 1f, 0.2f, 1);
 
         int x0 = width/2 - 90;
         int x1 = width/2;
@@ -30,7 +36,7 @@ public class Bresenham {
         int i, j, w, z;
 
         for(i = x0, j = x1, w = y0, z = y1; i <= fx0 && j <= fx1 && w >= fy0 && z >= fy1; i += 1, j += 1, w--, z--){
-            line(i, w, j, z, gl2,0.6f, 1f, 0.2f, 1);
+            line(i, w, j, z, gl2,0.1f, 1f, 0.2f, 3);
         }
 
         //circulos do meio
@@ -43,28 +49,28 @@ public class Bresenham {
         arc(width/2, (height - 640),25, gl2, 0.95f, 0.88f, 0.11f, true, true, true, true, true, true, true, true);
 
         //retangulo dos rebatedores
-        line(width/2 - 10, height - 632, width/2 - 3, height - 632, gl2, 1, 1, 1, 1);
-        line(width/2 - 3, height - 642, width/2 - 10, height - 642, gl2, 1, 1, 1, 1);
-        line(width/2 - 10, height - 632, width/2 - 10, height - 642, gl2, 1, 1, 1, 1);
-        line(width/2 - 3, height - 632, width/2 - 3, height - 642, gl2, 1, 1, 1, 1);
+        line(width/2 - 10, height - 632, width/2 - 3, height - 632, gl2, 1, 1, 1, 2);
+        line(width/2 - 3, height - 642, width/2 - 10, height - 642, gl2, 1, 1, 1, 2);
+        line(width/2 - 10, height - 632, width/2 - 10, height - 642, gl2, 1, 1, 1, 2);
+        line(width/2 - 3, height - 632, width/2 - 3, height - 642, gl2, 1, 1, 1, 2);
 
-        line(width/2 + 10, height - 632, width/2 + 3, height - 632, gl2, 1, 1, 1, 1);
-        line(width/2 + 3, height - 642, width/2 + 10, height - 642, gl2, 1, 1, 1, 1);
-        line(width/2 + 10, height - 632, width/2 + 10, height - 642, gl2, 1, 1, 1, 1);
-        line(width/2 + 3, height - 632, width/2 + 3, height - 642, gl2, 1, 1, 1, 1);
+        line(width/2 + 10, height - 632, width/2 + 3, height - 632, gl2, 1, 1, 1, 2);
+        line(width/2 + 3, height - 642, width/2 + 10, height - 642, gl2, 1, 1, 1, 2);
+        line(width/2 + 10, height - 632, width/2 + 10, height - 642, gl2, 1, 1, 1, 2);
+        line(width/2 + 3, height - 632, width/2 + 3, height - 642, gl2, 1, 1, 1, 2);
 
-        line(width/2 - 3, height - 642, width/2 + 3, height - 642, gl2, 1, 1, 1, 1);
-        line(width/2 + 3, height - 652, width/2 - 3, height - 652, gl2, 1, 1, 1, 1);
-        line(width/2 - 3, height - 642, width/2 - 3, height - 652, gl2, 1, 1, 1, 1);
-        line(width/2 + 3, height - 642, width/2 + 3, height - 652, gl2, 1, 1, 1, 1);
+        line(width/2 - 3, height - 642, width/2 + 3, height - 642, gl2, 1, 1, 1, 2);
+        line(width/2 + 3, height - 652, width/2 - 3, height - 652, gl2, 1, 1, 1, 2);
+        line(width/2 - 3, height - 642, width/2 - 3, height - 652, gl2, 1, 1, 1, 2);
+        line(width/2 + 3, height - 642, width/2 + 3, height - 652, gl2, 1, 1, 1, 2);
 
         //Banco dos treinadores
-        line(width/2 + 75, height-560, width/2 + 100, height-530, gl2, 1, 1, 1, 1);
-        line(width/2 - 75, height-560, width/2 - 100, height-530, gl2, 1, 1, 1, 1);
-        line(width/2 + 75, height-560, width/2 + 85, height-570, gl2, 1, 1, 1, 1);
-        line(width/2 + 100, height-530, width/2 + 110, height-540, gl2, 1, 1, 1, 1);
-        line(width/2 - 75, height-560, width/2 - 85, height-570, gl2, 1, 1, 1, 1);
-        line(width/2 - 100, height-530, width/2 - 110, height-540, gl2, 1, 1, 1, 1);
+        line(width/2 + 75, height-560, width/2 + 100, height-530, gl2, 1, 1, 1, 2);
+        line(width/2 - 75, height-560, width/2 - 100, height-530, gl2, 1, 1, 1, 2);
+        line(width/2 + 75, height-560, width/2 + 85, height-570, gl2, 1, 1, 1, 2);
+        line(width/2 + 100, height-530, width/2 + 110, height-540, gl2, 1, 1, 1, 2);
+        line(width/2 - 75, height-560, width/2 - 85, height-570, gl2, 1, 1, 1, 2);
+        line(width/2 - 100, height-530, width/2 - 110, height-540, gl2, 1, 1, 1, 2);
 
         for (Ponto point2DS : listaPontosArquibancada){
             line(point2DS.getPoint2DS()[0].getX(), point2DS.getPoint2DS()[0].getY(), point2DS.getPoint2DS()[1].getX(), point2DS.getPoint2DS()[1].getY(), gl2, point2DS.getR(), point2DS.getG(), point2DS.getB(), point2DS.getTamanho());
@@ -73,9 +79,9 @@ public class Bresenham {
     }
 
     private static void plotPoint(double x, double y, double r, double g, double b, int pointSize, GL2 gl2){
+        gl2.glPointSize(pointSize);
         gl2.glBegin(GL2.GL_POINTS);
         gl2.glColor3d(r, g, b);
-        gl2.glPointSize(pointSize);
         gl2.glVertex2d(x, y);
         gl2.glEnd();
     }
@@ -86,6 +92,8 @@ public class Bresenham {
         double dx = 1;
         double dy = 1;
         double err = dx - (raio << 1);
+        int count = 0;
+        int count3 = 0;
 
         while (x >= y){
 
@@ -95,13 +103,29 @@ public class Bresenham {
             }
 
             if(oct2){
-                plotPoint(x0 + y, y0 + x, r, g, b, 1, gl2);
-                line(x0, y0, x0 + y, y0 + x, gl2, r, g, b, 1);
+                if(limitArc != 0){
+                    if(count <= limitArc){
+                        plotPoint(x0 + y, y0 + x, r, g, b, 1, gl2);
+                        line(x0, y0, x0 + y, y0 + x, gl2, r, g, b, 1);
+                    }
+                    count++;
+                }else{
+                    plotPoint(x0 + y, y0 + x, r, g, b, 1, gl2);
+                    line(x0, y0, x0 + y, y0 + x, gl2, r, g, b, 1);
+                }
             }
 
             if(oct3){
-                plotPoint(x0 - y, y0 + x, r, g, b, 1, gl2);
-                line(x0, y0, x0 - y, y0 + x, gl2, r, g, b, 1);
+                if(limitArc != 0){
+                    if(count3 <= limitArc){
+                        plotPoint(x0 - y, y0 + x, r, g, b, 1, gl2);
+                        line(x0, y0, x0 - y, y0 + x, gl2, r, g, b, 1);
+                    }
+                    count3++;
+                }else{
+                    plotPoint(x0 - y, y0 + x, r, g, b, 1, gl2);
+                    line(x0, y0, x0 - y, y0 + x, gl2, r, g, b, 1);
+                }
             }
 
             if(oct4){
@@ -142,6 +166,7 @@ public class Bresenham {
             }
 
         }
+        System.out.println(count3);
     }
 
     private static void line(double x0, double y0, double x1, double y1, GL2 gl2, double r, double g, double b, int pointSize){
