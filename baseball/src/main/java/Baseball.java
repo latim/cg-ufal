@@ -62,8 +62,10 @@ public class Baseball {
 
         if(type == 0) {
             EquacaoReta.display(gl2, listaPontosArquibancada, listaPontosProibidos, width, height, lineWidth);
-        }else{
+        }else if(type == 1){
             Bresenham.display(gl2, listaPontosArquibancada, listaPontosProibidos, width, height, lineWidth);
+        }else{
+            EquacaoRetaComLines.display(gl2, listaPontosArquibancada, listaPontosProibidos, width, height, lineWidth);
         }
     }
 

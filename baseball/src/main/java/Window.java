@@ -54,7 +54,8 @@ public class Window {
             }
         });
 
-        JRadioButton retaButton = new JRadioButton("Equação da reta");
+        JRadioButton retaButton = new JRadioButton("Equação da reta com triangle");
+        JRadioButton retaLinesButton = new JRadioButton("Equação da reta só com lines");
         JRadioButton bressButton = new JRadioButton("Bressham");
 
         retaButton.addActionListener(new ActionListener() {
@@ -62,6 +63,16 @@ public class Window {
             public void actionPerformed(ActionEvent e) {
                 if(retaButton.isSelected()){
                     baseball.setType(0);
+                    gljpanel.repaint();
+                }
+            }
+        });
+
+        retaLinesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(retaLinesButton.isSelected()){
+                    baseball.setType(2);
                     gljpanel.repaint();
                 }
             }
@@ -93,6 +104,7 @@ public class Window {
 
         ButtonGroup buttonGroup = new ButtonGroup();
         buttonGroup.add(retaButton);
+        buttonGroup.add(retaLinesButton);
         buttonGroup.add(bressButton);
 
         JButton botaoCor = new JButton("Selecione a cor");
@@ -113,6 +125,7 @@ public class Window {
         botoes.setLayout(new BoxLayout(botoes, BoxLayout.Y_AXIS));
         botoes.add(lOpcao);
         botoes.add(retaButton);
+        botoes.add(retaLinesButton);
         botoes.add(bressButton);
         botoes.add(lEspessura);
         botoes.add(espessura);
