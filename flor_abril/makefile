@@ -4,4 +4,4 @@ EXEC=ativ1
 OBJ=ativ1.o
 all: $(EXEC)
 ativ1: 
-	gcc florabril.c -framework OpenGL -framework GLUT -o flor
+	gcc flor_abril_rotate.c -framework OpenGL -framework GLUT -o flor
