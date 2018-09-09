@@ -209,6 +209,15 @@ void drawFloor(){
     glPopMatrix();
 }
 
+void drawRoofTemple(){
+	glPushMatrix();
+		glTranslatef(5.0f, 5.0f, -30.0f); 
+		glScalef(30.0f, 0.0f, -125.0f);
+		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glutSolidCube(0.5);
+    glPopMatrix();
+}
+
 void display(void){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
@@ -224,6 +233,7 @@ void display(void){
 	drawTemple();
 	drawRoof();
 	drawFloor();
+	drawRoofTemple();
 	glFlush();
 	glutSwapBuffers();
 }
