@@ -14,7 +14,7 @@
 #define COLOR_DOOR_Y 0.8
 #define COLOR_DOOR_Z 0.7
 
-#define DEBUG 0
+#define DEBUG 1
 
 #define PI 3.14
 
@@ -26,7 +26,7 @@ GLint HEIGHT = 700;
 
 float lx = 0.0f, lz = -1.0f;
 float x = 4.609134f, z = 46.560791f, y = 1.0f;
-
+//float x = 4.609134f, z = 9.060791f, y = 1.0f;
 
 GLfloat light_diffuse[] = {1.0, 1.0, 1.0, 1.0};
 GLfloat light_position[] = {0.0, 0.0, 0.0, 1.0};
@@ -36,7 +36,7 @@ float angle = 0.0f;
 float right_door_angle = 0.0f;
 float left_door_angle = 0.0f;
 
-float debugx = 4.0f;
+float debugx = 7.100001f;
 void drawTemple() {
 
     glPushMatrix();
@@ -74,13 +74,6 @@ void drawTemple() {
 		glScalef(6.0, 1.0, 1.0);  
 		glColor3f(COLOR_DOOR_X, COLOR_DOOR_Y, COLOR_DOOR_Z);
 		glutSolidCube(0.3);
-    glPopMatrix();
-
-	glPushMatrix();
-		glTranslatef(5.0f, 2.0f, 1.0f); 
-		glScalef(10.0, 12.0, 1.0);  
-		glColor3f(COLOR_DOOR_X, COLOR_DOOR_Y, COLOR_DOOR_Z);
-		glutSolidCube(0.5);
     glPopMatrix();
 
 	glPushMatrix();
@@ -148,6 +141,78 @@ void drawTemple() {
 
 }
 
+void drawRoof(){
+	glPushMatrix();
+		glTranslatef(-0.700000f, 6.100002f, 1.0f); 
+		glRotatef(45.0f, 0, 0, 1);
+		glScalef(100.199356f, 2.0f, 100.0f);
+		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glutSolidCube(0.05);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(10.600002f, 6.100002f, 1.0f); 
+		glRotatef(-45.0f, 0, 0, 1);
+		glScalef(100.199356f, 2.0f, 100.0f);
+		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glutSolidCube(0.05);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(3.599999f, 5.400001f, 7.5f); 
+		glRotatef(20.0f, 0, 0, 1);
+		glScalef(60.199356f, 2.0f, 70.0f);
+		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glutSolidCube(0.05);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(6.200002f, 5.400001f, 7.5f); 
+		glRotatef(-20.0f, 0, 0, 1);
+		glScalef(60.199356f, 2.0f, 70.0f);
+		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glutSolidCube(0.05);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(2.100001f, 13.200005, 1.700001f); 
+		glRotatef(45.0f, 0, 0, 1);
+		glScalef(45.9f, 2.0f, 70.0f);
+		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glutSolidCube(0.05);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(2.100001f, 13.200005, 1.700001f); 
+		glRotatef(45.0f, 0, 0, 1);
+		glScalef(45.9f, 2.0f, 70.0f);
+		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glutSolidCube(0.05);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(7.900000f, 13.200005, 1.700001f); 
+		glRotatef(-45.0f, 0, 0, 1);
+		glScalef(45.9f, 2.0f, 70.0f);
+		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glutSolidCube(0.05);
+    glPopMatrix();
+
+
+}
+
+void drawFloor(){
+	glPushMatrix();
+		glTranslatef(-1.0f, 1.0f, 1.0f); 
+		glScalef(100.199356f, 1.0f, 100.0f);
+		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glutSolidCube(0.05);
+    glPopMatrix();
+
+
+
+}
+
 void display(void){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
@@ -161,6 +226,7 @@ void display(void){
 		printf("%f %f %f %f %f %f\n", x, y, z, lx, lz);
 
 	drawTemple();
+	drawRoof();
 	glFlush();
 	glutSwapBuffers();
 }
@@ -178,7 +244,7 @@ void processSpecialKeys(int key, int xx, int yy){
 	switch (key){
 		case GLUT_KEY_LEFT :
 			if(DEBUG){
-				debugx -= 0.01;
+				debugx -= 0.1;
 			}else{
 				angle -= 0.05f;
 				lx = sin(angle);
@@ -187,7 +253,7 @@ void processSpecialKeys(int key, int xx, int yy){
 		break;
 		case GLUT_KEY_RIGHT :
 			if(DEBUG){
-				debugx += 0.01;
+				debugx += 0.1;
 			}else{
 				angle += 0.05f;
 				lx = sin(angle);
