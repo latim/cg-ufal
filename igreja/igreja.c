@@ -14,7 +14,7 @@
 #define COLOR_DOOR_Y 0.8
 #define COLOR_DOOR_Z 0.7
 
-#define DEBUG 1
+#define DEBUG 0
 
 #define PI 3.14
 
@@ -25,8 +25,8 @@ GLint HEIGHT = 700;
 //float x = 5.0f, z = 20.0f, y = 1.0f;
 
 float lx = 0.0f, lz = -1.0f;
-float x = 4.609134f, z = 46.560791f, y = 1.0f;
-//float x = 4.609134f, z = 9.060791f, y = 1.0f;
+//float x = 4.609134f, z = 46.560791f, y = 1.0f;
+float x = 4.609134f, z = 8.060791f, y = 1.0f;
 
 GLfloat light_diffuse[] = {1.0, 1.0, 1.0, 1.0};
 GLfloat light_position[] = {0.0, 0.0, 0.0, 1.0};
@@ -198,19 +198,15 @@ void drawRoof(){
 		glutSolidCube(0.05);
     glPopMatrix();
 
-
 }
 
 void drawFloor(){
 	glPushMatrix();
-		glTranslatef(-1.0f, 1.0f, 1.0f); 
-		glScalef(100.199356f, 1.0f, 100.0f);
+		glTranslatef(-5.0f, -1.5f, -4.0f); 
+		glScalef(300.0f, 0.0f, 1000.0f);
 		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
-		glutSolidCube(0.05);
+		glutSolidCube(0.5);
     glPopMatrix();
-
-
-
 }
 
 void display(void){
@@ -227,6 +223,7 @@ void display(void){
 
 	drawTemple();
 	drawRoof();
+	drawFloor();
 	glFlush();
 	glutSwapBuffers();
 }
