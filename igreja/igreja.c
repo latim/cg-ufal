@@ -26,17 +26,16 @@ GLint HEIGHT = 700;
 
 float lx = 0.0f, lz = -1.0f;
 //float x = 4.609134f, z = 46.560791f, y = 1.0f;
-float x = 4.609134f, z = 8.060791f, y = 1.0f;
+float x = 4.609134, z = 26.560791f, y = 1.0f;
 
 GLfloat light_diffuse[] = {1.0, 1.0, 1.0, 1.0};
 GLfloat light_position[] = {0.0, 0.0, 0.0, 1.0};
 
 float angle = 0.0f;
 
-float right_door_angle = 0.0f;
-float left_door_angle = 0.0f;
+float angle_porta = 0;
 
-float debugx = -60.0f;
+float debugx = 1.0f;
 void drawTemple() {
 
     glPushMatrix();
@@ -90,12 +89,56 @@ void drawTemple() {
 		glutSolidCube(0.5);
     glPopMatrix();
 
+	//Bordas da porta
+
 	glPushMatrix();
-		glTranslatef(5.0f, 2.0f, 9.0f); 
-		glScalef(12.0, 12.0, 1.0);  
-		glColor3f(COLOR_DOOR_X, COLOR_DOOR_Y, COLOR_DOOR_Z);
+		glTranslatef(2.839999f, 2.0f, 9.0f); 
+		glScalef(1.5, 12.0, 0.5);  
+		glColor3f(COLOR_WALL_X, COLOR_WALL_Y, COLOR_WALL_Z);
 		glutSolidCube(0.5);
     glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(7.149944f, 2.0f, 9.0f); 
+		glScalef(2.0, 12.0, 0.5);  
+		glColor3f(COLOR_WALL_X, COLOR_WALL_Y, COLOR_WALL_Z);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	//Fim bordas da porta
+
+	//Complemento cima porta
+
+	glPushMatrix();
+		glTranslatef(5.0f, 4.0f, 9.0f); 
+		glScalef(7.2f, 4.0, 0.5);  
+		glColor3f(COLOR_WALL_X, COLOR_WALL_Y, COLOR_WALL_Z);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	//Fim Complemento
+
+	//Porta
+
+	glPushMatrix();
+		glTranslatef(3.069969f, 1.0f, 8.7f); 
+		glRotatef(angle_porta, 0, 1, 0); 
+		glTranslatef(0.85f, 0.0f, -0.05f);
+		glColor3f(COLOR_DOOR_X, COLOR_DOOR_Y, COLOR_DOOR_Z);
+		glScalef(4.3, 8.0, 0.5);  
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(6.869998f, 1.0f, 8.7f); 
+		glRotatef(-angle_porta, 0, 1, 0);  
+		glTranslatef(-0.85f, 0.0f, -0.05f);
+		glColor3f(COLOR_DOOR_X, COLOR_DOOR_Y, COLOR_DOOR_Z);
+		glScalef(4.3, 8.0, 0.5);  
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	//Fim porta
 
 	glPushMatrix();
 		glTranslatef(2.26f, 2.0f, 5.0f); 
@@ -138,7 +181,6 @@ void drawTemple() {
 		glColor3f(COLOR_WALL_X, COLOR_WALL_Y, COLOR_WALL_Z);
 		glutSolidCube(0.5);
     glPopMatrix();
-
 }
 
 void drawRoof(){
@@ -302,7 +344,7 @@ void drawMainStage(float x_centro, float y_centro, float raio){
 	glPopMatrix();
 
 	GLUquadricObj *s = gluNewQuadric();
-
+	gluQuadricDrawStyle(s, GLU_FILL);
 	glPushMatrix();
 		glTranslatef(5.0f, 0.0f, -59.279907f);
 		glRotatef(-90.0f, -1.0, 0, 0);
@@ -383,7 +425,12 @@ void display(void){
 
 void keyboard(unsigned char key, int x, int y) {
     switch(key){
-        
+        case 'p':
+			if(angle_porta >= 90.0f) 
+				angle_porta = 0;
+			else
+				angle_porta += 10.0f;
+			break;
     }
 }
 
