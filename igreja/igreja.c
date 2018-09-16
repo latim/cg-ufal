@@ -218,7 +218,7 @@ void drawRoofTemple(){
     glPopMatrix();
 }
 
-void drawAirConditioning(int x, int z){
+void drawAirConditioning(float x, float z){
 	glPushMatrix();
 		glTranslatef(x, 3.5f, z); 
 		glScalef(1.5f, 1.0f, 7.0f);
@@ -227,7 +227,15 @@ void drawAirConditioning(int x, int z){
     glPopMatrix();
 }
 
-
+void drawLamp(float x, float z, float angle){
+	glPushMatrix();
+		glTranslatef(x, 5.0f, z); 
+		glRotatef(angle, 0, 1, 0);
+		glScalef(3.0f, 0.5f, 1.0f);
+		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glutSolidCube(0.5);
+    glPopMatrix();
+}
 
 void display(void){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -246,14 +254,26 @@ void display(void){
 	drawFloor();
 	drawRoofTemple();
 
-	drawAirConditioning(-2.0f, -10.0);
-	drawAirConditioning(-2.0f, -20.0);
-	drawAirConditioning(-2.0f, -30.0);
+	drawAirConditioning(-2.0f, -10.0f);
+	drawAirConditioning(-2.0f, -20.0f);
+	drawAirConditioning(-2.0f, -30.0f);
 
-	drawAirConditioning(12.0f, -10.0);
-	drawAirConditioning(12.0f, -20.0);
-	drawAirConditioning(12.0f, -30.0);
+	drawAirConditioning(12.0f, -10.0f);
+	drawAirConditioning(12.0f, -20.0f);
+	drawAirConditioning(12.0f, -30.0f);
 
+	drawLamp(3.0f, -10.0f, 45.0f);
+	drawLamp(3.0f, -15.0f, 45.0f);
+	drawLamp(3.0f, -20.0f, 45.0f);
+	drawLamp(3.0f, -25.0f, 45.0f);
+
+	drawLamp(7.0f, -10.0f, -45.0f);
+	drawLamp(7.0f, -15.0f, -45.0f);
+	drawLamp(7.0f, -20.0f, -45.0f);
+	drawLamp(7.0f, -25.0f, -45.0f);
+
+	drawLamp(5.0f, -20.0f, 0.0f);
+	drawLamp(5.0f, -25.0f, 0.0f);
 
 	glFlush();
 	glutSwapBuffers();
