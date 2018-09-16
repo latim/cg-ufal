@@ -14,7 +14,7 @@
 #define COLOR_DOOR_Y 0.8
 #define COLOR_DOOR_Z 0.7
 
-#define DEBUG 1
+#define DEBUG 0
 
 #define PI 3.14
 
@@ -282,6 +282,20 @@ void drawChair(int x, int z){
     glPopMatrix();
 }
 
+void drawSoundStereo(float x, float z, float angle){
+	glPushMatrix();
+		glTranslatef(x + 0.7f, 2.5f, z);
+		glRotatef(angle, 0, 0, 1);
+		glScalef(0.4f, 1.0f, 1.0f);
+		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glutSolidCube(0.5);
+    glPopMatrix();
+}
+
+void drawMainStage(){
+	
+}
+
 void display(void){
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -338,6 +352,15 @@ void display(void){
 	drawChair(9.5f, -15.0f);
 	drawChair(9.5f, -25.0f);
 	drawChair(9.5f, -35.0f);
+
+	drawSoundStereo(-2.0f, -12.0f, 45.0);
+	drawSoundStereo(-2.0f, -22.0f, 45.0);
+	drawSoundStereo(-2.0f, -32.0f, 45.0);
+
+	drawSoundStereo(12.0f, -12.0f, -45.0);
+	drawSoundStereo(12.0f, -22.0f, -45.0);
+	drawSoundStereo(12.0f, -32.0f, -45.0);
+
 
 	glFlush();
 	glutSwapBuffers();
