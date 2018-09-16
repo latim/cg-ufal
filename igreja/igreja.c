@@ -14,7 +14,7 @@
 #define COLOR_DOOR_Y 0.8
 #define COLOR_DOOR_Z 0.7
 
-#define DEBUG 0
+#define DEBUG 1
 
 #define PI 3.14
 
@@ -36,7 +36,7 @@ float angle = 0.0f;
 float right_door_angle = 0.0f;
 float left_door_angle = 0.0f;
 
-float debugx = 7.100001f;
+float debugx = 1.5f;
 void drawTemple() {
 
     glPushMatrix();
@@ -237,7 +237,55 @@ void drawLamp(float x, float z, float angle){
     glPopMatrix();
 }
 
+void drawChair(int x, int z){
+	glPushMatrix();
+		glTranslatef(x, -0.5f, z); 
+		glScalef(0.25f, 2.5f, 1.5f);
+		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(x - 0.14, -1.0f, z - 1.4f); 
+		glScalef(0.25f, 1.25f, 2.0f);
+		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(x + 1.837f, -0.5f, z); 
+		glScalef(0.25f, 2.5f, 1.5f);
+		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(x - 0.33 + 2.0f, -1.0f, z - 1.4f); 
+		glScalef(0.25f, 1.25f, 2.0f);
+		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(x + 0.9f, -0.719998f, z - 1.4f); 
+		glScalef(4.0f, 0.1f, 2.0f);
+		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(x + 0.9f, -0.319998f, z); 
+		glRotatef(-45.0f, 1, 0, 0);
+		glScalef(4.0f, 0.1f, 2.0f);
+		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glutSolidCube(0.5);
+    glPopMatrix();
+}
+
 void display(void){
+
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
 	glMatrixMode(GL_MODELVIEW);     
@@ -275,6 +323,22 @@ void display(void){
 	drawLamp(5.0f, -20.0f, 0.0f);
 	drawLamp(5.0f, -25.0f, 0.0f);
 
+	drawChair(0.5f, -5.0f);
+	drawChair(0.5f, -10.0f);
+	drawChair(0.5f, -20.0f);
+	drawChair(0.5f, -30.0f);
+	drawChair(0.5f, -15.0f);
+	drawChair(0.5f, -25.0f);
+	drawChair(0.5f, -35.0f);
+
+	drawChair(9.5f, -5.0f);
+	drawChair(9.5f, -10.0f);
+	drawChair(9.5f, -20.0f);
+	drawChair(9.5f, -30.0f);
+	drawChair(9.5f, -15.0f);
+	drawChair(9.5f, -25.0f);
+	drawChair(9.5f, -35.0f);
+
 	glFlush();
 	glutSwapBuffers();
 }
@@ -292,7 +356,7 @@ void processSpecialKeys(int key, int xx, int yy){
 	switch (key){
 		case GLUT_KEY_LEFT :
 			if(DEBUG){
-				debugx -= 0.1;
+				debugx -= 0.01;
 			}else{
 				angle -= 0.05f;
 				lx = sin(angle);
