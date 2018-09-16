@@ -14,7 +14,7 @@
 #define COLOR_DOOR_Y 0.8
 #define COLOR_DOOR_Z 0.7
 
-#define DEBUG 0
+#define DEBUG 1
 
 #define PI 3.14
 
@@ -36,7 +36,7 @@ float angle = 0.0f;
 float right_door_angle = 0.0f;
 float left_door_angle = 0.0f;
 
-float debugx = 1.5f;
+float debugx = -60.0f;
 void drawTemple() {
 
     glPushMatrix();
@@ -292,13 +292,27 @@ void drawSoundStereo(float x, float z, float angle){
     glPopMatrix();
 }
 
-void drawMainStage(){
-	
+void drawMainStage(float x_centro, float y_centro, float raio){
+	GLUquadricObj *p = gluNewQuadric();
+
+	glPushMatrix();
+		glTranslatef(5.0f, -1.0f, -59.279907f);
+		glRotatef(-90.0f, -1.0, 0, 0);
+		gluCylinder(p, 4.0f, 4.0f, 1.0f, 100, 100);
+	glPopMatrix();
+
+	GLUquadricObj *s = gluNewQuadric();
+
+	glPushMatrix();
+		glTranslatef(5.0f, 0.0f, -59.279907f);
+		glRotatef(-90.0f, -1.0, 0, 0);
+		gluCylinder(s, 3.0f, 3.0f, 1.0f, 100, 100);
+	glPopMatrix();
 }
 
 void display(void){
 
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
@@ -361,6 +375,7 @@ void display(void){
 	drawSoundStereo(12.0f, -22.0f, -45.0);
 	drawSoundStereo(12.0f, -32.0f, -45.0);
 
+	drawMainStage(7.0f, -30.0f, 2.0f);
 
 	glFlush();
 	glutSwapBuffers();
