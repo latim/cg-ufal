@@ -218,6 +218,17 @@ void drawRoofTemple(){
     glPopMatrix();
 }
 
+void drawAirConditioning(int x, int z){
+	glPushMatrix();
+		glTranslatef(x, 3.5f, z); 
+		glScalef(1.5f, 1.0f, 7.0f);
+		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glutSolidCube(0.5);
+    glPopMatrix();
+}
+
+
+
 void display(void){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
@@ -234,6 +245,16 @@ void display(void){
 	drawRoof();
 	drawFloor();
 	drawRoofTemple();
+
+	drawAirConditioning(-2.0f, -10.0);
+	drawAirConditioning(-2.0f, -20.0);
+	drawAirConditioning(-2.0f, -30.0);
+
+	drawAirConditioning(12.0f, -10.0);
+	drawAirConditioning(12.0f, -20.0);
+	drawAirConditioning(12.0f, -30.0);
+
+
 	glFlush();
 	glutSwapBuffers();
 }
