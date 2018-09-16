@@ -413,9 +413,9 @@ void display(void){
 	drawSoundStereo(-2.0f, -22.0f, 45.0);
 	drawSoundStereo(-2.0f, -32.0f, 45.0);
 
-	drawSoundStereo(12.0f, -12.0f, -45.0);
-	drawSoundStereo(12.0f, -22.0f, -45.0);
-	drawSoundStereo(12.0f, -32.0f, -45.0);
+	drawSoundStereo(10.0f, -12.0f, -45.0);
+	drawSoundStereo(10.0f, -22.0f, -45.0);
+	drawSoundStereo(10.0f, -32.0f, -45.0);
 
 	drawMainStage(7.0f, -30.0f, 2.0f);
 
