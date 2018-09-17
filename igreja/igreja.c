@@ -35,7 +35,7 @@ float angle = 0.0f;
 
 float angle_porta = 0;
 
-float debugx = 1.0f;
+float debugx = 5.875443f;
 void drawTemple() {
 
     glPushMatrix();
@@ -117,6 +117,124 @@ void drawTemple() {
     glPopMatrix();
 
 	//Fim Complemento
+
+	//Circulo do meio
+
+	glPushMatrix();
+		glBegin(GL_TRIANGLE_FAN);
+			float centro_x = 5.0919950f;
+			float centro_y = 10.0f;
+			float raio = 1.0;
+
+			glVertex3d(centro_x, centro_y, 5.5f);
+
+			for(int i = 0; i <= 360; i++){
+				double theta = (2 * i * PI) / 360.0;
+
+				double x = centro_x + raio * cos(theta);
+				double y = centro_y + raio * sin(theta);
+				glColor3f(0.2, 0.3, 0.6);
+				glVertex3d(x, y, 5.5f);
+			}
+		glEnd();
+	glPopMatrix();
+
+	//Fim circulo do meio
+
+	//Janelas do meio cima
+
+	glPushMatrix();
+		glBegin(GL_TRIANGLE_FAN);
+			centro_x = 4.475443f;
+			centro_y = 12.5;
+			raio = 0.4;
+
+			glVertex3d(centro_x, centro_y, 5.5f);
+
+			for(int i = 0; i <= 360; i++){
+				double theta = (i * PI) / 360.0;
+
+				double x = centro_x + raio * cos(theta);
+				double y = centro_y + raio * sin(theta);
+
+				glVertex3d(x, y, 5.5f);
+			}
+		glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
+		glBegin(GL_TRIANGLE_FAN);
+			centro_x = 5.725435f;
+			centro_y = 12.5;
+			raio = 0.4;
+
+			glVertex3d(centro_x, centro_y, 5.5f);
+
+			for(int i = 0; i <= 360; i++){
+				double theta = (i * PI) / 360.0;
+
+				double x = centro_x + raio * cos(theta);
+				double y = centro_y + raio * sin(theta);
+
+				glVertex3d(x, y, 5.5f);
+			}
+		glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(4.429941f, 12.0f, 5.5f); 
+		glColor3f(COLOR_DOOR_X, COLOR_DOOR_Y, COLOR_DOOR_Z);
+		glScalef(1.7, 2.0, 0.5);
+		glutSolidCube(0.5);
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(5.719941f, 12.0f, 5.5f); 
+		glColor3f(COLOR_DOOR_X, COLOR_DOOR_Y, COLOR_DOOR_Z);
+		glScalef(1.7, 2.0, 0.5);
+		glutSolidCube(0.5);
+	glPopMatrix();
+
+	//Fim Janelas do meio cima
+
+	//Semicirculo da porta
+	glPushMatrix();
+		glBegin(GL_TRIANGLE_FAN);
+			centro_x = 4.919950f;
+			centro_y = 2.5;
+			raio = 1.7;
+
+			glVertex3d(centro_x, centro_y, 9.5f);
+
+			for(int i = 0; i <= 180; i++){
+				double theta = (i * PI) / 360.0;
+
+				double x = centro_x + raio * cos(theta);
+				double y = centro_y + raio * sin(theta);
+
+				glVertex3d(x, y, 9.5f);
+			}
+		glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
+		glBegin(GL_TRIANGLE_FAN);
+			centro_x = 4.919950f;
+			centro_y = 2.5;
+			raio = 1.7;
+
+			glVertex3d(centro_x, centro_y, 9.5f);
+
+			for(int i = 180; i <= 360; i++){
+				double theta = (i * PI) / 360.0;
+
+				double x = centro_x + raio * cos(theta);
+				double y = centro_y + raio * sin(theta);
+
+				glVertex3d(x, y, 9.5f);
+			}
+		glEnd();
+	glPopMatrix();
 
 	//Porta
 
@@ -352,6 +470,58 @@ void drawMainStage(float x_centro, float y_centro, float raio){
 	glPopMatrix();
 }
 
+void drawFrontWindows(){
+
+	glBegin(GL_TRIANGLE_FAN);
+		float centro_x = -0.445;
+    	float centro_y = 3.0;
+        float raio = 1.0;
+
+        glVertex3d(centro_x, centro_y, 1.5f);
+
+        for(int i = 0; i <= 360; i++){
+            double theta = (i * PI) / 360.0;
+
+            double x = centro_x + raio * cos(theta);
+            double y = centro_y + raio * sin(theta);
+
+            glVertex3d(x, y, 1.5f);
+		}
+	glEnd();
+
+	glPushMatrix();
+		glTranslatef(-0.5f, 1.5f, 1.3f); 
+		glScalef(4.0, 6.0, 1.0);  
+		glColor3f(COLOR_DOOR_X, COLOR_DOOR_Y, COLOR_DOOR_Z);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(10.8f, 1.5f, 1.3f); 
+		glScalef(4.0, 6.0, 1.0);  
+		glColor3f(COLOR_DOOR_X, COLOR_DOOR_Y, COLOR_DOOR_Z);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glBegin(GL_TRIANGLE_FAN);
+		centro_x = 10.765;
+    	centro_y = 3.0;
+        raio = 1.0;
+
+        glVertex3d(centro_x, centro_y, 1.5f);
+
+        for(int i = 0; i <= 360; i++){
+            double theta = (i * PI) / 360.0;
+
+            double x = centro_x + raio * cos(theta);
+            double y = centro_y + raio * sin(theta);
+
+            glVertex3d(x, y, 1.5f);
+		}
+	glEnd();
+
+}	
+
 void display(void){
 
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -418,6 +588,8 @@ void display(void){
 	drawSoundStereo(12.0f, -32.0f, -45.0);
 
 	drawMainStage(7.0f, -30.0f, 2.0f);
+
+	drawFrontWindows();
 
 	glFlush();
 	glutSwapBuffers();
