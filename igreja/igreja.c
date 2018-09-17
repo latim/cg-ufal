@@ -355,9 +355,9 @@ void drawTriangle(){
 
 	glPushMatrix();
 		glBegin(GL_TRIANGLE_FAN);
-			glVertex3f(8.700000f, 5.100002f, 1.0f);
+			glVertex3f(8.700000f, 4.100002f, 1.0f);
 			glVertex3f(8.700000f, 8.100002f, 1.0f);
-			glVertex3f(12.0f, 5.100002f, 1.0f);
+			glVertex3f(12.0f, 4.100002f, 1.0f);
 		glEnd();
 	glPopMatrix();
 
@@ -374,6 +374,14 @@ void drawTriangle(){
 			glVertex3f(7.000000f, 12.200005, 2.700001f);
 			glVertex3f(7.00000f, 14.100002f, 2.700001f);
 			glVertex3f(8.5f, 12.200005, 3.700001f);
+		glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
+		glBegin(GL_TRIANGLE_FAN);
+			glVertex3f(2.839999f, 5.0f, 9.0f);
+			glVertex3f(7.00000f, 5.0f, 9.0f);
+			glVertex3f(4.9f, 5.900005, 9.0f);
 		glEnd();
 	glPopMatrix();
 }
