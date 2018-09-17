@@ -14,7 +14,7 @@
 #define COLOR_DOOR_Y 0.8
 #define COLOR_DOOR_Z 0.7
 
-#define DEBUG 1
+#define DEBUG 0
 
 #define PI 3.14
 
@@ -26,7 +26,7 @@ GLint HEIGHT = 700;
 
 float lx = 0.0f, lz = -1.0f;
 //float x = 4.609134f, z = 46.560791f, y = 1.0f;
-float x = 4.609134, z = 26.560791f, y = 1.0f;
+float x = 4.609134, z = 39.560791f, y = 1.0f;
 
 GLfloat light_diffuse[] = {1.0, 1.0, 1.0, 1.0};
 GLfloat light_position[] = {0.0, 0.0, 0.0, 1.0};
@@ -225,14 +225,6 @@ void drawRoof(){
     glPopMatrix();
 
 	glPushMatrix();
-		glTranslatef(2.100001f, 13.200005, 1.700001f); 
-		glRotatef(45.0f, 0, 0, 1);
-		glScalef(45.9f, 2.0f, 70.0f);
-		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
-		glutSolidCube(0.05);
-    glPopMatrix();
-
-	glPushMatrix();
 		glTranslatef(7.900000f, 13.200005, 1.700001f); 
 		glRotatef(-45.0f, 0, 0, 1);
 		glScalef(45.9f, 2.0f, 70.0f);
@@ -352,6 +344,40 @@ void drawMainStage(float x_centro, float y_centro, float raio){
 	glPopMatrix();
 }
 
+void drawTriangle(){
+	glPushMatrix();
+		glBegin(GL_TRIANGLE_FAN);
+			glVertex3f(-1.700000f, 5.100002f, 1.0f);
+			glVertex3f(3.0f, 5.100002f, 1.0f);
+			glVertex3f(1.0f, 8.100002f, 1.0f);
+		glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
+		glBegin(GL_TRIANGLE_FAN);
+			glVertex3f(8.700000f, 5.100002f, 1.0f);
+			glVertex3f(8.700000f, 8.100002f, 1.0f);
+			glVertex3f(12.0f, 5.100002f, 1.0f);
+		glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
+		glBegin(GL_TRIANGLE_FAN);
+			glVertex3f(1.20001f, 12.200005, 2.700001f);
+			glVertex3f(3.0f, 12.200005, 2.700001f);
+			glVertex3f(3.0f, 14.100002f, 2.700001f);
+		glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
+		glBegin(GL_TRIANGLE_FAN);
+			glVertex3f(7.000000f, 12.200005, 2.700001f);
+			glVertex3f(7.00000f, 14.100002f, 2.700001f);
+			glVertex3f(8.5f, 12.200005, 3.700001f);
+		glEnd();
+	glPopMatrix();
+}
+
 void display(void){
 
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -418,6 +444,8 @@ void display(void){
 	drawSoundStereo(10.0f, -32.0f, -45.0);
 
 	drawMainStage(7.0f, -30.0f, 2.0f);
+
+	drawTriangle();
 
 	glFlush();
 	glutSwapBuffers();
