@@ -38,7 +38,7 @@
 #define COLOR_SOUND_Y 1
 #define COLOR_SOUND_Z 1
 
-#define DEBUG 0
+#define DEBUG 1
 
 #define PI 3.14
 
@@ -64,7 +64,7 @@ int mouseY;
 
 float angleY = 0;
 
-float debugx = 5.875443f;
+float debugx = 1.0f;
 
 void cameraViewUpdate(void){
    	ly = sin(angleY);
@@ -594,6 +594,33 @@ void drawFrontWindows(){
 
 }	
 
+void drawInsideFirstFloor(){
+	glPushMatrix();
+		glTranslatef(11.379995f, 0.3f, -57.699547f); 
+		glScalef(4.0f, 7.0f, 2.0f);
+		glColor3f(COLOR_CHAIR_X, COLOR_CHAIR_Y, COLOR_CHAIR_Z);
+		glutSolidCube(0.5);
+    glPopMatrix();
+	glPushMatrix();
+		glTranslatef(-0.169999f, 0.3f, -58.899547f); 
+		glScalef(0.5f, 7.0f, 7.5f);
+		glColor3f(COLOR_CHAIR_X, COLOR_CHAIR_Y, COLOR_CHAIR_Z);
+		glutSolidCube(0.5);
+    glPopMatrix();
+	glPushMatrix();
+		glTranslatef(-1.429996f, 0.3f, -57.699547f); 
+		glScalef(4.0f, 7.0f, 2.0f);
+		glColor3f(COLOR_CHAIR_X, COLOR_CHAIR_Y, COLOR_CHAIR_Z);
+		glutSolidCube(0.5);
+    glPopMatrix();
+	glPushMatrix();
+		glTranslatef(10.3f, 0.3f, -58.899547f); 
+		glScalef(0.5f, 7.0f, 7.5f);
+		glColor3f(COLOR_CHAIR_X, COLOR_CHAIR_Y, COLOR_CHAIR_Z);
+		glutSolidCube(0.5);
+    glPopMatrix();
+}
+
 void display(void){
 
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -664,6 +691,8 @@ void display(void){
 
 	drawTriangle();
 	drawFrontWindows();
+
+	drawInsideFirstFloor();
 
 	glFlush();
 	glutSwapBuffers();
