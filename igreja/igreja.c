@@ -6,13 +6,37 @@
 #endif
 #include <math.h>
 
-#define COLOR_WALL_X 0.917
-#define COLOR_WALL_Y 0.8431
-#define COLOR_WALL_Z 0.7372
+#define COLOR_WALL_X 0.4
+#define COLOR_WALL_Y 0.4
+#define COLOR_WALL_Z 0.1
 
 #define COLOR_DOOR_X 0.4
-#define COLOR_DOOR_Y 0.8
-#define COLOR_DOOR_Z 0.7
+#define COLOR_DOOR_Y 0.3
+#define COLOR_DOOR_Z 0
+
+#define COLOR_CIRCLE_X 0.4
+#define COLOR_CIRCLE_Y 0.2
+#define COLOR_CIRCLE_Z 0
+
+#define COLOR_CHAIR_X 0.6
+#define COLOR_CHAIR_Y 0.4
+#define COLOR_CHAIR_Z 0.0
+
+#define COLOR_AIR_X 1
+#define COLOR_AIR_Y 1
+#define COLOR_AIR_Z 1
+
+#define COLOR_LAMP_X 1
+#define COLOR_LAMP_Y 1
+#define COLOR_LAMP_Z 1
+
+#define COLOR_ROOF_X 1
+#define COLOR_ROOF_Y 1
+#define COLOR_ROOF_Z 0.8
+
+#define COLOR_SOUND_X 1
+#define COLOR_SOUND_Y 1
+#define COLOR_SOUND_Z 1
 
 #define DEBUG 0
 
@@ -24,7 +48,7 @@ GLint HEIGHT = 700;
 //float lx = 0.0f, lz = -1.0f;
 //float x = 5.0f, z = 20.0f, y = 1.0f;
 
-float lx = 0.0f, lz = -1.0f;
+float lx = 0.0f, lz = -1.0f, ly;
 //float x = 4.609134f, z = 46.560791f, y = 1.0f;
 float x = 4.609134, z = 39.560791f, y = 1.0f;
 
@@ -35,7 +59,19 @@ float angle = 0.0f;
 
 float angle_porta = 0;
 
-float debugx = 1.0f;
+int mouseX;
+int mouseY;
+
+float angleY = 0;
+
+float debugx = 5.875443f;
+
+void cameraViewUpdate(void){
+   	ly = sin(angleY);
+    lx = sin(angle);
+    lz = -cos(angle);
+}
+
 void drawTemple() {
 
     glPushMatrix();
@@ -52,6 +88,7 @@ void drawTemple() {
 
 	glPushMatrix();
 		glBegin(GL_TRIANGLE_FAN);
+			glColor3f(COLOR_WALL_X, COLOR_WALL_Y, COLOR_WALL_Z);
 		 	glVertex3f(x, y, z);   //V0(red)
 			glVertex3f(-a+x,-a+y, a+z);   //V1(green)
 			glVertex3f( a+x,-a+y, a+z);   //V2(blue)
@@ -78,14 +115,14 @@ void drawTemple() {
 	glPushMatrix();
 		glTranslatef(5.0f, 10.0f, 1.0f); 
 		glScalef(8.0, 20.0, 10.0);  
-		glColor3f(COLOR_DOOR_X, COLOR_DOOR_Y, COLOR_DOOR_Z);
+		glColor3f(COLOR_WALL_X, COLOR_WALL_Y, COLOR_WALL_Z);
 		glutSolidCube(0.5);
     glPopMatrix();
 
 	glPushMatrix();
-		glTranslatef(5.0f, 8.7f, 1.0f);
+		glTranslatef(5.0f, 8.7f, 1.2f);
 		glScalef(15.0, 15.0, 10.0);  
-		glColor3f(COLOR_DOOR_X, COLOR_DOOR_Y, COLOR_DOOR_Z);
+		glColor3f(COLOR_WALL_X, COLOR_WALL_Y, COLOR_WALL_Z);
 		glutSolidCube(0.5);
     glPopMatrix();
 
@@ -117,6 +154,124 @@ void drawTemple() {
     glPopMatrix();
 
 	//Fim Complemento
+
+	//Circulo do meio
+
+	glPushMatrix();
+		glBegin(GL_TRIANGLE_FAN);
+			float centro_x = 5.0919950f;
+			float centro_y = 10.0f;
+			float raio = 1.0;
+
+			glVertex3d(centro_x, centro_y, 5.5f);
+
+			for(int i = 0; i <= 360; i++){
+				double theta = (2 * i * PI) / 360.0;
+
+				double x = centro_x + raio * cos(theta);
+				double y = centro_y + raio * sin(theta);
+				glColor3f(COLOR_CIRCLE_X, COLOR_CIRCLE_Y, COLOR_CIRCLE_Z);
+				glVertex3d(x, y, 5.5f);
+			}
+		glEnd();
+	glPopMatrix();
+
+	//Fim circulo do meio
+
+	//Janelas do meio cima
+
+	glPushMatrix();
+		glBegin(GL_TRIANGLE_FAN);
+			centro_x = 4.475443f;
+			centro_y = 12.5;
+			raio = 0.4;
+
+			glVertex3d(centro_x, centro_y, 5.5f);
+
+			for(int i = 0; i <= 360; i++){
+				double theta = (i * PI) / 360.0;
+
+				double x = centro_x + raio * cos(theta);
+				double y = centro_y + raio * sin(theta);
+
+				glVertex3d(x, y, 5.5f);
+			}
+		glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
+		glBegin(GL_TRIANGLE_FAN);
+			centro_x = 5.725435f;
+			centro_y = 12.5;
+			raio = 0.4;
+
+			glVertex3d(centro_x, centro_y, 5.5f);
+
+			for(int i = 0; i <= 360; i++){
+				double theta = (i * PI) / 360.0;
+
+				double x = centro_x + raio * cos(theta);
+				double y = centro_y + raio * sin(theta);
+			
+				glVertex3d(x, y, 5.5f);
+			}
+		glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(4.429941f, 12.0f, 5.5f); 
+		glColor3f(COLOR_DOOR_X, COLOR_DOOR_Y, COLOR_DOOR_Z);
+		glScalef(1.7, 2.0, 0.5);
+		glutSolidCube(0.5);
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(5.719941f, 12.0f, 5.5f); 
+		glColor3f(COLOR_DOOR_X, COLOR_DOOR_Y, COLOR_DOOR_Z);
+		glScalef(1.7, 2.0, 0.5);
+		glutSolidCube(0.5);
+	glPopMatrix();
+
+	//Fim Janelas do meio cima
+
+	//Semicirculo da porta
+	glPushMatrix();
+		glBegin(GL_TRIANGLE_FAN);
+			centro_x = 4.919950f;
+			centro_y = 2.5;
+			raio = 1.7;
+
+			glVertex3d(centro_x, centro_y, 9.5f);
+
+			for(int i = 0; i <= 180; i++){
+				double theta = (i * PI) / 360.0;
+
+				double x = centro_x + raio * cos(theta);
+				double y = centro_y + raio * sin(theta);
+
+				glVertex3d(x, y, 9.5f);
+			}
+		glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
+		glBegin(GL_TRIANGLE_FAN);
+			centro_x = 4.919950f;
+			centro_y = 2.5;
+			raio = 1.7;
+
+			glVertex3d(centro_x, centro_y, 9.5f);
+
+			for(int i = 180; i <= 360; i++){
+				double theta = (i * PI) / 360.0;
+
+				double x = centro_x + raio * cos(theta);
+				double y = centro_y + raio * sin(theta);
+
+				glVertex3d(x, y, 9.5f);
+			}
+		glEnd();
+	glPopMatrix();
 
 	//Porta
 
@@ -247,7 +402,7 @@ void drawRoofTemple(){
 	glPushMatrix();
 		glTranslatef(5.0f, 5.0f, -30.0f); 
 		glScalef(30.0f, 0.0f, -125.0f);
-		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glColor3f(COLOR_ROOF_X, COLOR_ROOF_Y, COLOR_ROOF_Z);
 		glutSolidCube(0.5);
     glPopMatrix();
 }
@@ -256,7 +411,7 @@ void drawAirConditioning(float x, float z){
 	glPushMatrix();
 		glTranslatef(x, 3.5f, z); 
 		glScalef(1.5f, 1.0f, 7.0f);
-		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glColor3f(COLOR_AIR_X, COLOR_AIR_X, COLOR_AIR_X);
 		glutSolidCube(0.5);
     glPopMatrix();
 }
@@ -266,7 +421,7 @@ void drawLamp(float x, float z, float angle){
 		glTranslatef(x, 5.0f, z); 
 		glRotatef(angle, 0, 1, 0);
 		glScalef(3.0f, 0.5f, 1.0f);
-		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glColor3f(COLOR_LAMP_X, COLOR_LAMP_X, COLOR_LAMP_X);
 		glutSolidCube(0.5);
     glPopMatrix();
 }
@@ -275,35 +430,35 @@ void drawChair(int x, int z){
 	glPushMatrix();
 		glTranslatef(x, -0.5f, z); 
 		glScalef(0.25f, 2.5f, 1.5f);
-		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glColor3f(COLOR_CHAIR_X, COLOR_CHAIR_Y, COLOR_CHAIR_Z);
 		glutSolidCube(0.5);
     glPopMatrix();
 
 	glPushMatrix();
 		glTranslatef(x - 0.14, -1.0f, z - 1.4f); 
 		glScalef(0.25f, 1.25f, 2.0f);
-		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glColor3f(COLOR_CHAIR_X, COLOR_CHAIR_Y, COLOR_CHAIR_Z);
 		glutSolidCube(0.5);
     glPopMatrix();
 
 	glPushMatrix();
 		glTranslatef(x + 1.837f, -0.5f, z); 
 		glScalef(0.25f, 2.5f, 1.5f);
-		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glColor3f(COLOR_CHAIR_X, COLOR_CHAIR_Y, COLOR_CHAIR_Z);
 		glutSolidCube(0.5);
     glPopMatrix();
 
 	glPushMatrix();
 		glTranslatef(x - 0.33 + 2.0f, -1.0f, z - 1.4f); 
 		glScalef(0.25f, 1.25f, 2.0f);
-		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glColor3f(COLOR_CHAIR_X, COLOR_CHAIR_Y, COLOR_CHAIR_Z);
 		glutSolidCube(0.5);
     glPopMatrix();
 
 	glPushMatrix();
 		glTranslatef(x + 0.9f, -0.719998f, z - 1.4f); 
 		glScalef(4.0f, 0.1f, 2.0f);
-		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glColor3f(COLOR_CHAIR_X, COLOR_CHAIR_Y, COLOR_CHAIR_Z);
 		glutSolidCube(0.5);
     glPopMatrix();
 
@@ -311,7 +466,7 @@ void drawChair(int x, int z){
 		glTranslatef(x + 0.9f, -0.319998f, z); 
 		glRotatef(-45.0f, 1, 0, 0);
 		glScalef(4.0f, 0.1f, 2.0f);
-		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glColor3f(COLOR_CHAIR_X, COLOR_CHAIR_Y, COLOR_CHAIR_Z);
 		glutSolidCube(0.5);
     glPopMatrix();
 }
@@ -321,7 +476,7 @@ void drawSoundStereo(float x, float z, float angle){
 		glTranslatef(x + 0.7f, 2.5f, z);
 		glRotatef(angle, 0, 0, 1);
 		glScalef(0.4f, 1.0f, 1.0f);
-		glColor3f(COLOR_WALL_X, COLOR_WALL_X, COLOR_WALL_X);
+		glColor3f(COLOR_SOUND_X, COLOR_SOUND_X, COLOR_SOUND_X);
 		glutSolidCube(0.5);
     glPopMatrix();
 }
@@ -345,6 +500,7 @@ void drawMainStage(float x_centro, float y_centro, float raio){
 }
 
 void drawTriangle(){
+	glColor3f(COLOR_WALL_X, COLOR_WALL_Y, COLOR_WALL_Z);
 	glPushMatrix();
 		glBegin(GL_TRIANGLE_FAN);
 			glVertex3f(-1.700000f, 5.100002f, 1.0f);
@@ -386,6 +542,58 @@ void drawTriangle(){
 	glPopMatrix();
 }
 
+void drawFrontWindows(){
+
+	glBegin(GL_TRIANGLE_FAN);
+		float centro_x = -0.50;
+    	float centro_y = 3.0;
+        float raio = 1.0;
+		glColor3f(COLOR_DOOR_X, COLOR_DOOR_Y, COLOR_DOOR_Z);
+        glVertex3d(centro_x, centro_y, 1.5f);
+
+        for(int i = 0; i <= 360; i++){
+            double theta = (i * PI) / 360.0;
+
+            double x = centro_x + raio * cos(theta);
+            double y = centro_y + raio * sin(theta);
+			
+            glVertex3d(x, y, 1.5f);
+		}
+	glEnd();
+
+	glPushMatrix();
+		glTranslatef(-0.5f, 1.5f, 1.3f); 
+		glScalef(4.0, 6.0, 1.0);  
+		glColor3f(COLOR_DOOR_X, COLOR_DOOR_Y, COLOR_DOOR_Z);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(10.8f, 1.5f, 1.3f); 
+		glScalef(4.0, 6.0, 1.0);  
+		glColor3f(COLOR_DOOR_X, COLOR_DOOR_Y, COLOR_DOOR_Z);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glBegin(GL_TRIANGLE_FAN);
+		centro_x = 10.765;
+    	centro_y = 3.0;
+        raio = 1.0;
+
+        glVertex3d(centro_x, centro_y, 1.5f);
+
+        for(int i = 0; i <= 360; i++){
+            double theta = (i * PI) / 360.0;
+
+            double x = centro_x + raio * cos(theta);
+            double y = centro_y + raio * sin(theta);
+			glColor3f(COLOR_DOOR_X, COLOR_DOOR_Y, COLOR_DOOR_Z);
+            glVertex3d(x, y, 1.5f);
+		}
+	glEnd();
+
+}	
+
 void display(void){
 
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -396,6 +604,7 @@ void display(void){
 	
 	glLoadIdentity();
 
+	cameraViewUpdate();
 	gluLookAt(x, y, z, x + lx, y, z + lz, 0.0f, 1.0f, 0.0f);
 
 	if(!DEBUG)
@@ -454,6 +663,7 @@ void display(void){
 	drawMainStage(7.0f, -30.0f, 2.0f);
 
 	drawTriangle();
+	drawFrontWindows();
 
 	glFlush();
 	glutSwapBuffers();
@@ -461,7 +671,7 @@ void display(void){
 
 void keyboard(unsigned char key, int x, int y) {
     switch(key){
-        case 'p':
+        case 'p': case 'P':
 			if(angle_porta >= 90.0f) 
 				angle_porta = 0;
 			else
@@ -512,14 +722,8 @@ void processSpecialKeys(int key, int xx, int yy){
 	printf("%f\n", debugx);
 }
 
-	
 void init() {
   glClearColor(0.7, 1.0, 1.0, 0.0);
-
-  glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
-  glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-  glEnable(GL_LIGHT0);
-  glEnable(GL_LIGHTING);
 
   glEnable(GL_COLOR_MATERIAL);
 
@@ -556,6 +760,33 @@ void reshape(GLsizei width, GLsizei height)
 
 }
 
+void mousePassive(int x, int y){
+    mouseX = x;
+    mouseY = y;
+}
+
+void mouseMotion(int x, int y){
+    const float SPEED = 100;
+
+    angle += (mouseX-x)/SPEED;
+    angleY -= (mouseY-y)/SPEED;
+    mousePassive(x, y);
+    glutPostRedisplay();
+}
+
+void mouseFunc(int button, int state, int xx, int yy){
+    float limiter = 0.2;
+
+    if(button == 3){
+        x += lx*limiter;
+        z += lz*limiter;
+    } else if (button == 4){
+        x -= lx*limiter;
+        z -= lz*limiter;
+    }
+
+}
+
 int main(int argc,char **argv)
 {
   glutInit(&argc,argv);
@@ -570,6 +801,9 @@ int main(int argc,char **argv)
 
   init();
 
+  glutMotionFunc(mouseMotion);
+  glutPassiveMotionFunc(mousePassive);
+  glutMouseFunc(mouseFunc);
   glutKeyboardFunc(keyboard);
   glutDisplayFunc(display);
   glutReshapeFunc(reshape);
