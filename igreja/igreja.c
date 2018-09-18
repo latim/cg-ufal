@@ -5,6 +5,7 @@
 	#include <GL/glut.h>
 #endif
 #include <math.h>
+#include <unistd.h>
 
 #define COLOR_WALL_X 0.4
 #define COLOR_WALL_Y 0.4
@@ -42,7 +43,7 @@
 #define COLOR_SOUND_Y 1
 #define COLOR_SOUND_Z 1
 
-#define DEBUG 1
+#define DEBUG 0
 
 #define PI 3.14
 
@@ -53,8 +54,8 @@ GLint HEIGHT = 700;
 //float x = 5.0f, z = 20.0f, y = 1.0f;
 
 float lx = 0.0f, lz = -1.0f, ly;
-//float x = 4.609134f, z = 46.560791f, y = 1.0f;
-float x = -4.380314, z = 7.760260, y = 1.0f;
+float x = 4.609134f, z = 46.560791f, y = 1.0f;
+//float x = -4.380314, z = 7.760260, y = 1.0f;
 
 GLfloat light_diffuse[] = {1.0, 1.0, 1.0, 1.0};
 GLfloat light_position[] = {0.0, 0.0, 0.0, 1.0};
@@ -69,6 +70,8 @@ int mouseY;
 float angleY = 0;
 
 float debugx = -3.01f;
+
+int controle = 0;
 
 void cameraViewUpdate(void){
    	ly = sin(angleY);
@@ -413,7 +416,7 @@ void drawRoofTemple(){
 
 void drawAirConditioning(float x, float z){
 	glPushMatrix();
-		glTranslatef(x, 3.5f, z); 
+		glTranslatef(x, 4.5f, z); 
 		glScalef(1.5f, 1.0f, 7.0f);
 		glColor3f(COLOR_AIR_X, COLOR_AIR_X, COLOR_AIR_X);
 		glutSolidCube(0.5);
@@ -660,6 +663,34 @@ void drawSideWindows(int x, int z, int offset_y){
     glPopMatrix();
 }
 
+
+void drawInsideFirstFloor(){
+	glPushMatrix();
+		glTranslatef(11.379995f, 0.3f, -57.699547f); 
+		glScalef(4.0f, 7.0f, 2.0f);
+		glColor3f(COLOR_CHAIR_X, COLOR_CHAIR_Y, COLOR_CHAIR_Z);
+		glutSolidCube(0.5);
+    glPopMatrix();
+	glPushMatrix();
+		glTranslatef(-0.169999f, 0.3f, -58.899547f); 
+		glScalef(0.5f, 7.0f, 7.5f);
+		glColor3f(COLOR_CHAIR_X, COLOR_CHAIR_Y, COLOR_CHAIR_Z);
+		glutSolidCube(0.5);
+    glPopMatrix();
+	glPushMatrix();
+		glTranslatef(-1.429996f, 0.3f, -57.699547f); 
+		glScalef(4.0f, 7.0f, 2.0f);
+		glColor3f(COLOR_CHAIR_X, COLOR_CHAIR_Y, COLOR_CHAIR_Z);
+		glutSolidCube(0.5);
+    glPopMatrix();
+	glPushMatrix();
+		glTranslatef(10.3f, 0.3f, -58.899547f); 
+		glScalef(0.5f, 7.0f, 7.5f);
+		glColor3f(COLOR_CHAIR_X, COLOR_CHAIR_Y, COLOR_CHAIR_Z);
+		glutSolidCube(0.5);
+    glPopMatrix();
+}
+
 void display(void){
 
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -781,18 +812,31 @@ void display(void){
 	drawSideWindows(pos_side_x, -44.5f, 0.0f);
 	drawSideWindows(pos_side_x, -46.5f, 0.0f);
 
+	drawInsideFirstFloor();
+
+	if(!controle){
+		if(access("/Users/dayvsonsales/cg-ufal-2018/igreja/portao.txt", F_OK) != -1) {
+			angle_porta = 90.0f;
+		}else{
+			angle_porta = 0.0f;
+		}
+	}
+	
 	glFlush();
 	glutSwapBuffers();
 }
 
 void keyboard(unsigned char key, int x, int y) {
     switch(key){
+		case 'g':
+			controle = !controle;
+		break;
         case 'p': case 'P':
 			if(angle_porta >= 90.0f) 
 				angle_porta = 0;
 			else
 				angle_porta += 10.0f;
-			break;
+		break;
     }
 }
 
@@ -903,6 +947,11 @@ void mouseFunc(int button, int state, int xx, int yy){
 
 }
 
+void timer(){
+	glutPostRedisplay();
+	glutTimerFunc(100, timer, 0);
+}
+
 int main(int argc,char **argv)
 {
   glutInit(&argc,argv);
@@ -925,6 +974,8 @@ int main(int argc,char **argv)
   glutReshapeFunc(reshape);
   glutIdleFunc(display);
   glutSpecialFunc(processSpecialKeys);
+
+  //timer();
 
   glutMainLoop();
 
