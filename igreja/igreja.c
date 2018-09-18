@@ -30,6 +30,10 @@
 #define COLOR_LAMP_Y 1
 #define COLOR_LAMP_Z 1
 
+#define COLOR_SIDE_X 1
+#define COLOR_SIDE_Y 1
+#define COLOR_SIDE_Z 1
+
 #define COLOR_ROOF_X 1
 #define COLOR_ROOF_Y 1
 #define COLOR_ROOF_Z 0.8
@@ -38,7 +42,7 @@
 #define COLOR_SOUND_Y 1
 #define COLOR_SOUND_Z 1
 
-#define DEBUG 0
+#define DEBUG 1
 
 #define PI 3.14
 
@@ -50,7 +54,7 @@ GLint HEIGHT = 700;
 
 float lx = 0.0f, lz = -1.0f, ly;
 //float x = 4.609134f, z = 46.560791f, y = 1.0f;
-float x = 4.609134, z = 39.560791f, y = 1.0f;
+float x = -4.380314, z = 7.760260, y = 1.0f;
 
 GLfloat light_diffuse[] = {1.0, 1.0, 1.0, 1.0};
 GLfloat light_position[] = {0.0, 0.0, 0.0, 1.0};
@@ -64,7 +68,7 @@ int mouseY;
 
 float angleY = 0;
 
-float debugx = 5.875443f;
+float debugx = -3.01f;
 
 void cameraViewUpdate(void){
    	ly = sin(angleY);
@@ -594,6 +598,68 @@ void drawFrontWindows(){
 
 }	
 
+void drawSideWindows(int x, int z, int offset_y){
+	glColor3f(COLOR_SIDE_X, COLOR_SIDE_Y, COLOR_SIDE_Z);
+
+	glPushMatrix();
+		glBegin(GL_TRIANGLE_FAN);
+			float centro_x = z;
+			float centro_y = 3.0f;
+			if(offset_y > 0){
+				centro_y = 3.13f;
+			}
+			float raio = 0.6;
+
+			glVertex3d(x, centro_y, centro_x);
+
+			for(int i = 0; i <= 180; i++){
+				double theta = (2 * i * PI) / 360.0;
+
+				double _x = centro_x + raio * cos(theta);
+				double y = centro_y + raio * sin(theta);
+
+				glVertex3d(x, y, _x);
+			}
+		glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
+		glBegin(GL_TRIANGLE_FAN);
+			centro_x = z;
+			centro_y = 3.0f;
+			if(offset_y > 0){
+				centro_y = 3.13f;
+			}
+			raio = 0.6;
+
+			glVertex3d(x + 0.8f, centro_y, centro_x);
+
+			for(int i = 0; i <= 180; i++){
+				double theta = (2 * i * PI) / 360.0;
+
+				double _x = centro_x + raio * cos(theta);
+				double y = centro_y + raio * sin(theta);
+
+				glVertex3d(x + 0.8f, y, _x);
+			}
+		glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(x, 1.5f, z); 
+		glScalef(0.0f, 6.0f + offset_y, 2.5f);
+		glColor3f(COLOR_LAMP_X, COLOR_LAMP_X, COLOR_LAMP_X);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(x + 0.8f, 1.5f, z); 
+		glScalef(0.0f, 6.0f + offset_y, 2.5f);
+		glColor3f(COLOR_LAMP_X, COLOR_LAMP_X, COLOR_LAMP_X);
+		glutSolidCube(0.5);
+    glPopMatrix();
+}
+
 void display(void){
 
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -664,6 +730,56 @@ void display(void){
 
 	drawTriangle();
 	drawFrontWindows();
+
+	drawSideWindows(-3.01f, -3.0f, 1.0f);
+
+	drawSideWindows(-3.01f, -7.0f, 0.0f);
+	drawSideWindows(-3.01f, -9.5f, 0.0f);
+
+	drawSideWindows(-3.01f, -13.5f, 0.0f);
+	drawSideWindows(-3.01f, -15.5f, 0.0f);
+
+	drawSideWindows(-3.01f, -19.5f, 0.0f);
+	drawSideWindows(-3.01f, -21.5f, 0.0f);
+
+	drawSideWindows(-3.01f, -25.5f, 0.0f);
+	drawSideWindows(-3.01f, -27.5f, 1.0f);
+
+	drawSideWindows(-3.01f, -31.5f, 0.0f);
+	drawSideWindows(-3.01f, -34.5f, 0.0f);
+
+	drawSideWindows(-3.01f, -38.5f, 0.0f);
+	drawSideWindows(-3.01f, -40.5f, 0.0f);
+
+	drawSideWindows(-3.01f, -44.5f, 0.0f);
+	drawSideWindows(-3.01f, -46.5f, 0.0f);
+
+	drawSideWindows(-3.01f, -3.0f, 1.0f);
+
+	int pos_side_x = 12.0f;
+
+	drawSideWindows(pos_side_x, -3.0f, 1.0f);
+
+	drawSideWindows(pos_side_x, -7.0f, 0.0f);
+	drawSideWindows(pos_side_x, -9.5f, 0.0f);
+
+	drawSideWindows(pos_side_x, -13.5f, 0.0f);
+	drawSideWindows(pos_side_x, -15.5f, 0.0f);
+
+	drawSideWindows(pos_side_x, -19.5f, 0.0f);
+	drawSideWindows(pos_side_x, -21.5f, 0.0f);
+
+	drawSideWindows(pos_side_x, -25.5f, 0.0f);
+	drawSideWindows(pos_side_x, -27.5f, 1.0f);
+
+	drawSideWindows(pos_side_x, -31.5f, 0.0f);
+	drawSideWindows(pos_side_x, -34.5f, 0.0f);
+
+	drawSideWindows(pos_side_x, -38.5f, 0.0f);
+	drawSideWindows(pos_side_x, -40.5f, 0.0f);
+
+	drawSideWindows(pos_side_x, -44.5f, 0.0f);
+	drawSideWindows(pos_side_x, -46.5f, 0.0f);
 
 	glFlush();
 	glutSwapBuffers();
