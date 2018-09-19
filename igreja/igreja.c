@@ -76,7 +76,7 @@ int mouseY;
 
 float angleY = 0;
 
-float debugx =  1.7f;
+float debugx = -0.9f;
 
 int controle = 0;
 
@@ -112,6 +112,7 @@ void drawTemple() {
 		glEnd();
 	glPopMatrix();
 
+	//cruz
 	glPushMatrix();
 		glTranslatef(5.0f, 15.0f, 1.0f); 
 		glScalef(0.5, 15.0, 1.0);  
@@ -125,6 +126,7 @@ void drawTemple() {
 		glColor3f(COLOR_DOOR_X, COLOR_DOOR_Y, COLOR_DOOR_Z);
 		glutSolidCube(0.3);
     glPopMatrix();
+	//fim cruz
 
 	glPushMatrix();
 		glTranslatef(5.0f, 10.0f, 1.0f); 
@@ -495,14 +497,49 @@ void drawSoundStereo(float x, float z, float angle){
     glPopMatrix();
 }
 
-void drawMainStage(float x_centro, float y_centro, float raio){
-	GLUquadricObj *p = gluNewQuadric();
+void drawMainStage(){
 
+	glBegin(GL_TRIANGLE_FAN);
+		float centro_x = 5.0;
+    	float centro_y = -59.2799;
+		float _y = -0.030000f;
+        float raio = 3.0;
+		glVertex3d(centro_x, _y, centro_y);
+
+        for(int i = 0; i <= 360; i++){
+            double theta = (2 * i * PI) / 360.0;
+
+            double x = centro_x + raio * cos(theta);
+            double y = centro_y + raio * sin(theta);
+			
+            glVertex3d(x, _y, y);
+		}
+	glEnd();
+
+	GLUquadricObj *p = gluNewQuadric();
+	gluQuadricDrawStyle(p, GLU_FILL);
 	glPushMatrix();
 		glTranslatef(5.0f, -1.0f, -59.279907f);
 		glRotatef(-90.0f, -1.0, 0, 0);
 		gluCylinder(p, 4.0f, 4.0f, 1.0f, 100, 100);
 	glPopMatrix();
+
+	glBegin(GL_TRIANGLE_FAN);
+		centro_x = 5.0;
+    	centro_y = -59.2799;
+		_y = -1.010000f;
+        raio = 4.0;
+		glVertex3d(centro_x, _y, centro_y);
+
+        for(int i = 0; i <= 360; i++){
+            double theta = (2 * i * PI) / 360.0;
+
+            double x = centro_x + raio * cos(theta);
+            double y = centro_y + raio * sin(theta);
+			
+            glVertex3d(x, _y, y);
+		}
+	glEnd();
 
 	GLUquadricObj *s = gluNewQuadric();
 	gluQuadricDrawStyle(s, GLU_FILL);
@@ -808,8 +845,8 @@ void drawInsideFirstFloor(){
     glPopMatrix();
 
 	glPushMatrix();
-		glTranslatef(11.0000f, 2.7f, -57.258945); 
-		glScalef(3.5f, 0.2f, 0.5f);
+		glTranslatef(11.3000f, 2.7f, -57.258945); 
+		glScalef(4.0f, 0.2f, 0.5f);
 		glColor3f(COLOR_BLACK, COLOR_BLACK, COLOR_BLACK);
 		glutSolidCube(0.5);
     glPopMatrix();
@@ -937,7 +974,45 @@ void drawYellowWall(){
 }
 
 void drawTableWithCross(){
-	
+	//parte de cima
+	glPushMatrix();
+		glTranslatef(5.0f, 1.2f, -59.279907f); 
+		glScalef(4.5f, 1.0f, 2.0f);
+		glColor3f(COLOR_CHAIR_X, COLOR_CHAIR_Y, COLOR_CHAIR_Z);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	//parte lateral direita
+	glPushMatrix();
+		glTranslatef(3.869999f, 0.6f, -59.279907f); 
+		glScalef(0.25f, 3.0f, 2.0f);
+		glColor3f(COLOR_CHAIR_X, COLOR_CHAIR_Y, COLOR_CHAIR_Z);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	//parte lateral esquerda
+	glPushMatrix();
+		glTranslatef(6.069999f, 0.6f, -59.279907f); 
+		glScalef(0.25f, 3.0f, 2.0f);
+		glColor3f(COLOR_CHAIR_X, COLOR_CHAIR_Y, COLOR_CHAIR_Z);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	//cruz
+	glPushMatrix();
+		glTranslatef(5.0f, 1.840065f, -59.279907f); 
+		glScalef(0.25, 2.5, 1.0);  
+		glColor3f(COLOR_DOOR_X, COLOR_DOOR_Y, COLOR_DOOR_Z);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(5.0f, 2.00065f, -59.279907f); 
+		glScalef(3.0, 0.5, 1.0);  
+		glColor3f(COLOR_DOOR_X, COLOR_DOOR_Y, COLOR_DOOR_Z);
+		glutSolidCube(0.3);
+	glPopMatrix();
+
 }
 
 void display(void){
@@ -1006,7 +1081,7 @@ void display(void){
 	drawSoundStereo(10.0f, -22.0f, -45.0);
 	drawSoundStereo(10.0f, -32.0f, -45.0);
 
-	drawMainStage(7.0f, -30.0f, 2.0f);
+	drawMainStage();
 
 	drawTriangle();
 	drawFrontWindows();
@@ -1073,6 +1148,8 @@ void display(void){
 	
 	drawBehindBuilding();
 	drawYellowWall();
+
+	drawTableWithCross();
 
 	glFlush();
 	glutSwapBuffers();
