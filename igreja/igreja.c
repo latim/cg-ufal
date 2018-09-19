@@ -64,8 +64,8 @@ GLint HEIGHT = 700;
 //float x = 5.0f, z = 20.0f, y = 1.0f;
 
 float lx = 0.0f, lz = -1.0f, ly;
-//float x = 4.609134f, z = 46.560791f, y = 1.0f;
-float x = 2.245674f, z = -47.705856f, y = 1.000000f;
+float x = 4.609134f, z = 46.560791f, y = 1.0f;
+//float x = 2.245674f, z = -47.705856f, y = 1.000000f;
 
 float angle = 0.0f;
 
@@ -80,9 +80,9 @@ float debugx =  -56.729065f;
 
 int controle = 0;
 
-void cameraViewUpdate(void){
-   	ly = sin(angleY);
+void cameraViewUpdate(){
     lx = sin(angle);
+   	ly = sin(angleY);
     lz = -cos(angle);
 }
 
@@ -1132,25 +1132,25 @@ void mousePassive(int x, int y){
 }
 
 void mouseMotion(int x, int y){
-    const float SPEED = 100;
+    float speed = 110.0f;
 
-    angle += (mouseX-x)/SPEED;
-    angleY -= (mouseY-y)/SPEED;
+    angle += (mouseX - x) / speed;
+    angleY -= (mouseY - y) / speed;
+
     mousePassive(x, y);
     glutPostRedisplay();
 }
 
-void mouseFunc(int button, int state, int xx, int yy){
-    float limiter = 0.2;
-
-    if(button == 3){
-        x += lx*limiter;
-        z += lz*limiter;
-    } else if (button == 4){
-        x -= lx*limiter;
-        z -= lz*limiter;
+void mouseFunc(int button, int state, int _x, int _y){
+    float fracao = 0.4;
+	
+    if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN){
+        x += lx * fracao;
+        z += lz * fracao;
+    } else if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN){
+        x -= lx * fracao;
+        z -= lz * fracao;
     }
-
 }
 
 void timer(){
@@ -1165,10 +1165,7 @@ int main(int argc,char **argv)
   glutInitWindowSize(WIDTH,HEIGHT);
   glutInitWindowPosition(10, 10);
 
-  if(!glutCreateWindow("Igreja")) {
-    fprintf(stderr,"Error opening a window.\n");
-    exit(-1);
-  }
+  glutCreateWindow("Igreja");
 
   init();
 
@@ -1181,7 +1178,7 @@ int main(int argc,char **argv)
   glutIdleFunc(display);
   glutSpecialFunc(processSpecialKeys);
 
-  //timer();
+  timer();
 
   glutMainLoop();
 
