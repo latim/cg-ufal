@@ -64,8 +64,8 @@ GLint HEIGHT = 700;
 //float x = 5.0f, z = 20.0f, y = 1.0f;
 
 float lx = 0.0f, lz = -1.0f, ly;
-float x = 4.609134f, z = 46.560791f, y = 1.0f;
-//float x = 2.245674f, z = -47.705856f, y = 1.000000f;
+//float x = 4.609134f, z = 46.560791f, y = 1.0f;
+float x = 9.292539f, z = -9.354383f, y = 1.000000f;
 
 float angle = 0.0f;
 
@@ -76,7 +76,7 @@ int mouseY;
 
 float angleY = 0;
 
-float debugx =  -56.729065f;
+float debugx =  1.7f;
 
 int controle = 0;
 
@@ -144,7 +144,7 @@ void drawTemple() {
 
 	glPushMatrix();
 		glTranslatef(2.839999f, 2.0f, 9.0f); 
-		glScalef(1.5, 12.0, 0.5);  
+		glScalef(2.0, 12.0, 0.5);  
 		glColor3f(COLOR_WALL_X, COLOR_WALL_Y, COLOR_WALL_Z);
 		glutSolidCube(0.5);
     glPopMatrix();
@@ -251,9 +251,9 @@ void drawTemple() {
 	//Semicirculo da porta
 	glPushMatrix();
 		glBegin(GL_TRIANGLE_FAN);
-			centro_x = 4.919950f;
+			centro_x = 4.959950f;
 			centro_y = 2.5;
-			raio = 1.7;
+			raio = 1.6;
 
 			glVertex3d(centro_x, centro_y, 9.5f);
 
@@ -270,9 +270,9 @@ void drawTemple() {
 
 	glPushMatrix();
 		glBegin(GL_TRIANGLE_FAN);
-			centro_x = 4.919950f;
+			centro_x = 4.959950f;
 			centro_y = 2.5;
-			raio = 1.7;
+			raio = 1.6;
 
 			glVertex3d(centro_x, centro_y, 9.5f);
 
@@ -449,7 +449,7 @@ void drawChair(int x, int z){
     glPopMatrix();
 
 	glPushMatrix();
-		glTranslatef(x - 0.14, -1.0f, z - 1.4f); 
+		glTranslatef(x - 0.040001, -1.0f, z + -0.839999); 
 		glScalef(0.25f, 1.25f, 2.0f);
 		glColor3f(COLOR_CHAIR_X, COLOR_CHAIR_Y, COLOR_CHAIR_Z);
 		glutSolidCube(0.5);
@@ -463,14 +463,14 @@ void drawChair(int x, int z){
     glPopMatrix();
 
 	glPushMatrix();
-		glTranslatef(x - 0.33 + 2.0f, -1.0f, z - 1.4f); 
+		glTranslatef(x - 0.33 + 2.180000f, -1.0f, z + -0.839999); 
 		glScalef(0.25f, 1.25f, 2.0f);
 		glColor3f(COLOR_CHAIR_X, COLOR_CHAIR_Y, COLOR_CHAIR_Z);
 		glutSolidCube(0.5);
     glPopMatrix();
 
 	glPushMatrix();
-		glTranslatef(x + 0.9f, -0.719998f, z - 1.4f); 
+		glTranslatef(x + 0.900001, -0.719998f, z - 0.810001f); 
 		glScalef(4.0f, 0.1f, 2.0f);
 		glColor3f(COLOR_CHAIR_X, COLOR_CHAIR_Y, COLOR_CHAIR_Z);
 		glutSolidCube(0.5);
@@ -575,6 +575,23 @@ void drawFrontWindows(){
 		}
 	glEnd();
 
+	glBegin(GL_TRIANGLE_FAN);
+		centro_x = -0.50;
+    	centro_y = 3.0;
+        raio = 1.0;
+		glColor3f(COLOR_DOOR_X, COLOR_DOOR_Y, COLOR_DOOR_Z);
+        glVertex3d(centro_x, centro_y, 0.680000);
+
+        for(int i = 0; i <= 360; i++){
+            double theta = (i * PI) / 360.0;
+
+            double x = centro_x + raio * cos(theta);
+            double y = centro_y + raio * sin(theta);
+			
+            glVertex3d(x, y, 0.680000);
+		}
+	glEnd();
+
 	glPushMatrix();
 		glTranslatef(-0.5f, 1.5f, 1.3f); 
 		glScalef(4.0, 6.0, 1.0);  
@@ -583,7 +600,21 @@ void drawFrontWindows(){
     glPopMatrix();
 
 	glPushMatrix();
+		glTranslatef(-0.5f, 1.5f, 0.9f); 
+		glScalef(4.0, 6.0, 1.0);  
+		glColor3f(COLOR_DOOR_X, COLOR_DOOR_Y, COLOR_DOOR_Z);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
 		glTranslatef(10.8f, 1.5f, 1.3f); 
+		glScalef(4.0, 6.0, 1.0);  
+		glColor3f(COLOR_DOOR_X, COLOR_DOOR_Y, COLOR_DOOR_Z);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(10.8f, 1.5f, 0.9f); 
 		glScalef(4.0, 6.0, 1.0);  
 		glColor3f(COLOR_DOOR_X, COLOR_DOOR_Y, COLOR_DOOR_Z);
 		glutSolidCube(0.5);
@@ -603,6 +634,23 @@ void drawFrontWindows(){
             double y = centro_y + raio * sin(theta);
 			glColor3f(COLOR_DOOR_X, COLOR_DOOR_Y, COLOR_DOOR_Z);
             glVertex3d(x, y, 1.5f);
+		}
+	glEnd();
+
+	glBegin(GL_TRIANGLE_FAN);
+		centro_x = 10.765;
+    	centro_y = 3.0;
+        raio = 1.0;
+
+        glVertex3d(centro_x, centro_y, 0.680000);
+
+        for(int i = 0; i <= 360; i++){
+            double theta = (i * PI) / 360.0;
+
+            double x = centro_x + raio * cos(theta);
+            double y = centro_y + raio * sin(theta);
+			glColor3f(COLOR_DOOR_X, COLOR_DOOR_Y, COLOR_DOOR_Z);
+            glVertex3d(x, y, 0.680000);
 		}
 	glEnd();
 
@@ -881,11 +929,15 @@ void drawBehindBuilding(){
 
 void drawYellowWall(){
 	glPushMatrix();
-		glTranslatef(5.5f, 3.019999f, -60.888894f); 
-		glScalef(33.0, 20.0, 1.0f); 
+		glTranslatef(5.5f, 1.619999f, -60.888894f); 
+		glScalef(29.0, 13.0, 1.0f); 
 		glColor3f(COLOR_YELLOW_WALL_X, COLOR_YELLOW_WALL_Y, COLOR_YELLOW_WALL_Z);
 		glutSolidCube(0.5);
     glPopMatrix();
+}
+
+void drawTableWithCross(){
+	
 }
 
 void display(void){
@@ -1028,13 +1080,21 @@ void display(void){
 
 void keyboard(unsigned char key, int _x, int _y) {
     switch(key){
-		case 'i':
+		case 'i': case 'I':
+			y += 1;
+			glutPostRedisplay();
+		break;
+		case 'k': case 'K':
+			y -= 1;
+			glutPostRedisplay();
+		break;
+		case 'z': case 'Z':
 			x = 4.609134f;
 			z = 46.560791f; 
 			y = 20.0f;
 			glutPostRedisplay();
 		break;
-		case 'g':
+		case 'g': case 'G':
 			controle = !controle;
 		break;
         case 'p': case 'P':
