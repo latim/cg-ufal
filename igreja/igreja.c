@@ -43,7 +43,13 @@
 #define COLOR_SOUND_Y 1
 #define COLOR_SOUND_Z 1
 
-#define DEBUG 0
+#define COLOR_FLOOR_X 1
+#define COLOR_FLOOR_Y 1
+#define COLOR_FLOOR_Z 0
+
+#define COLOR_BLACK 0
+
+#define DEBUG 1
 
 #define PI 3.14
 
@@ -54,11 +60,8 @@ GLint HEIGHT = 700;
 //float x = 5.0f, z = 20.0f, y = 1.0f;
 
 float lx = 0.0f, lz = -1.0f, ly;
-float x = 4.609134f, z = 46.560791f, y = 1.0f;
-//float x = -4.380314, z = 7.760260, y = 1.0f;
-
-GLfloat light_diffuse[] = {1.0, 1.0, 1.0, 1.0};
-GLfloat light_position[] = {0.0, 0.0, 0.0, 1.0};
+//float x = 4.609134f, z = 46.560791f, y = 1.0f;
+float x = 2.245674f, z = -47.705856f, y = 1.000000f;
 
 float angle = 0.0f;
 
@@ -69,7 +72,7 @@ int mouseY;
 
 float angleY = 0;
 
-float debugx = -3.01f;
+float debugx =  -56.729065f;
 
 int controle = 0;
 
@@ -663,30 +666,211 @@ void drawSideWindows(int x, int z, int offset_y){
     glPopMatrix();
 }
 
-
 void drawInsideFirstFloor(){
 	glPushMatrix();
-		glTranslatef(11.379995f, 0.3f, -57.699547f); 
+		glTranslatef(11.379995f, 0.6f, -57.699547f); 
 		glScalef(4.0f, 7.0f, 2.0f);
-		glColor3f(COLOR_CHAIR_X, COLOR_CHAIR_Y, COLOR_CHAIR_Z);
+		glColor3f(COLOR_FLOOR_X, COLOR_FLOOR_Y, COLOR_FLOOR_Z);
 		glutSolidCube(0.5);
     glPopMatrix();
+	
 	glPushMatrix();
-		glTranslatef(-0.169999f, 0.3f, -58.899547f); 
-		glScalef(0.5f, 7.0f, 7.5f);
-		glColor3f(COLOR_CHAIR_X, COLOR_CHAIR_Y, COLOR_CHAIR_Z);
+		glTranslatef(-0.169999f, 0.6f, -58.899547f); 
+		glScalef(1.0f, 7.0f, 7.5f);
+		glColor3f(COLOR_FLOOR_X, COLOR_FLOOR_Y, COLOR_FLOOR_Z);
 		glutSolidCube(0.5);
     glPopMatrix();
+	
 	glPushMatrix();
-		glTranslatef(-1.429996f, 0.3f, -57.699547f); 
+		glTranslatef(-1.429996f, 0.6f, -57.699547f); 
 		glScalef(4.0f, 7.0f, 2.0f);
-		glColor3f(COLOR_CHAIR_X, COLOR_CHAIR_Y, COLOR_CHAIR_Z);
+		glColor3f(COLOR_FLOOR_X, COLOR_FLOOR_Y, COLOR_FLOOR_Z);
 		glutSolidCube(0.5);
     glPopMatrix();
+
 	glPushMatrix();
-		glTranslatef(10.3f, 0.3f, -58.899547f); 
+		glTranslatef(10.3f, 0.6f, -58.899547f); 
 		glScalef(0.5f, 7.0f, 7.5f);
-		glColor3f(COLOR_CHAIR_X, COLOR_CHAIR_Y, COLOR_CHAIR_Z);
+		glColor3f(COLOR_FLOOR_X, COLOR_FLOOR_Y, COLOR_FLOOR_Z);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(10.3f, 8.2f, -58.899547f); 
+		glScalef(0.5f, 1.0f, 0.5f);
+		glColor3f(COLOR_FLOOR_X, COLOR_FLOOR_Y, COLOR_FLOOR_Z);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	//parte de cima direita
+
+	glPushMatrix();
+		glTranslatef(10.3f, 2.59f, -57.479237f); 
+		glScalef(0.5f, 1.0f, 0.5f);
+		glColor3f(COLOR_BLACK, COLOR_BLACK, COLOR_BLACK);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(10.3f, 2.59f, -58.479237f); 
+		glScalef(0.5f, 1.0f, 0.5f);
+		glColor3f(COLOR_BLACK, COLOR_BLACK, COLOR_BLACK);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(10.3f, 2.59f, -59.479237f); 
+		glScalef(0.5f, 1.0f, 0.5f);
+		glColor3f(COLOR_BLACK, COLOR_BLACK, COLOR_BLACK);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(10.3f, 2.59f, -59.479237f); 
+		glScalef(0.5f, 1.0f, 0.5f);
+		glColor3f(COLOR_BLACK, COLOR_BLACK, COLOR_BLACK);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(12.290002f, 2.59f, -57.479237f); 
+		glScalef(0.5f, 1.0f, 0.5f);
+		glColor3f(COLOR_BLACK, COLOR_BLACK, COLOR_BLACK);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(11.290002f, 2.59f, -57.479237f); 
+		glScalef(0.5f, 1.0f, 0.5f);
+		glColor3f(COLOR_BLACK, COLOR_BLACK, COLOR_BLACK);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	//parte de cima
+
+	glPushMatrix();
+		glTranslatef(10.3000f, 2.8f, -58.479237f); 
+		glScalef(0.5f, 0.2f, 3.5f);
+		glColor3f(COLOR_BLACK, COLOR_BLACK, COLOR_BLACK);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(11.0000f, 2.7f, -57.258945); 
+		glScalef(3.5f, 0.2f, 0.5f);
+		glColor3f(COLOR_BLACK, COLOR_BLACK, COLOR_BLACK);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	//fim parte de cima
+
+	//fim parte direita
+
+	//parte de cima esquerda
+
+	glPushMatrix();
+		glTranslatef(-0.2f, 2.59f, -57.479237f); 
+		glScalef(0.5f, 1.0f, 0.5f);
+		glColor3f(COLOR_BLACK, COLOR_BLACK, COLOR_BLACK);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(-0.2f, 2.59f, -58.479237f); 
+		glScalef(0.5f, 1.0f, 0.5f);
+		glColor3f(COLOR_BLACK, COLOR_BLACK, COLOR_BLACK);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(-0.2f, 2.59f, -59.479237f); 
+		glScalef(0.5f, 1.0f, 0.5f);
+		glColor3f(COLOR_BLACK, COLOR_BLACK, COLOR_BLACK);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(-0.6f, 2.59f, -59.479237f); 
+		glScalef(0.5f, 1.0f, 0.5f);
+		glColor3f(COLOR_BLACK, COLOR_BLACK, COLOR_BLACK);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(-0.9f, 2.59f, -57.479237f); 
+		glScalef(0.5f, 1.0f, 0.5f);
+		glColor3f(COLOR_BLACK, COLOR_BLACK, COLOR_BLACK);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(-1.6f, 2.59f, -57.479237f); 
+		glScalef(0.5f, 1.0f, 0.5f);
+		glColor3f(COLOR_BLACK, COLOR_BLACK, COLOR_BLACK);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(-2.4f, 2.59f, -57.479237f); 
+		glScalef(0.5f, 1.0f, 0.5f);
+		glColor3f(COLOR_BLACK, COLOR_BLACK, COLOR_BLACK);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	//parte de cima
+
+	glPushMatrix();
+		glTranslatef(-0.2f, 2.8f, -58.479237f); 
+		glScalef(0.5f, 0.2f, 3.5f);
+		glColor3f(COLOR_BLACK, COLOR_BLACK, COLOR_BLACK);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(-1.2f, 2.7f, -57.258945); 
+		glScalef(4.5f, 0.2f, 0.5f);
+		glColor3f(COLOR_BLACK, COLOR_BLACK, COLOR_BLACK);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	//fim parte de cima
+
+	//fim parte esquerda
+}
+
+void drawBehindBuilding(){
+	glPushMatrix();
+		glTranslatef(-3.0f, 2.019999f, -66.588894f); 
+		glScalef(1.0, 24.0, 14.0f); 
+		glColor3f(COLOR_WALL_X, COLOR_WALL_Y, COLOR_WALL_Z);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(14.0f, 2.019999f, -66.588894f); 
+		glScalef(1.0, 24.0, 14.0f); 
+		glColor3f(COLOR_WALL_X, COLOR_WALL_Y, COLOR_WALL_Z);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(5.5f, 2.019999f, -62.588894f); 
+		glScalef(33.0, 24.0, 1.0f); 
+		glColor3f(COLOR_WALL_X, COLOR_WALL_Y, COLOR_WALL_Z);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(5.5f, 2.019999f, -69.588894f); 
+		glScalef(33.0, 24.0, 1.0f); 
+		glColor3f(COLOR_WALL_X, COLOR_WALL_Y, COLOR_WALL_Z);
+		glutSolidCube(0.5);
+    glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(5.5f, 8.019999f, -65.588894f); 
+		glScalef(33.0, 1.0, 16.0f); 
+		glColor3f(COLOR_WALL_X, COLOR_WALL_Y, COLOR_WALL_Z);
 		glutSolidCube(0.5);
     glPopMatrix();
 }
@@ -702,7 +886,7 @@ void display(void){
 	glLoadIdentity();
 
 	cameraViewUpdate();
-	gluLookAt(x, y, z, x + lx, y, z + lz, 0.0f, 1.0f, 0.0f);
+	gluLookAt(x, y, z, x + lx, y + ly, z + lz, 0.0f, 1.0f, 0.0f);
 
 	if(!DEBUG)
 		printf("%f %f %f %f %f %f\n", x, y, z, lx, lz);
@@ -822,12 +1006,20 @@ void display(void){
 		}
 	}
 	
+	drawBehindBuilding();
+
 	glFlush();
 	glutSwapBuffers();
 }
 
-void keyboard(unsigned char key, int x, int y) {
+void keyboard(unsigned char key, int _x, int _y) {
     switch(key){
+		case 'i':
+			x = 4.609134f;
+			z = 46.560791f; 
+			y = 20.0f;
+			glutPostRedisplay();
+		break;
 		case 'g':
 			controle = !controle;
 		break;
@@ -842,7 +1034,7 @@ void keyboard(unsigned char key, int x, int y) {
 
 void processSpecialKeys(int key, int xx, int yy){
 	float fraction = 0.5f;
-	float fraction_2 = 0.1f;
+	float fraction_2 = 0.3f;
 
 	switch (key){
 		case GLUT_KEY_LEFT :
