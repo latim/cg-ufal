@@ -47,6 +47,10 @@
 #define COLOR_FLOOR_Y 1
 #define COLOR_FLOOR_Z 0
 
+#define COLOR_YELLOW_WALL_X 1
+#define COLOR_YELLOW_WALL_Y 1
+#define COLOR_YELLOW_WALL_Z 0.2
+
 #define COLOR_BLACK 0
 
 #define DEBUG 1
@@ -875,6 +879,15 @@ void drawBehindBuilding(){
     glPopMatrix();
 }
 
+void drawYellowWall(){
+	glPushMatrix();
+		glTranslatef(5.5f, 3.019999f, -60.888894f); 
+		glScalef(33.0, 20.0, 1.0f); 
+		glColor3f(COLOR_YELLOW_WALL_X, COLOR_YELLOW_WALL_Y, COLOR_YELLOW_WALL_Z);
+		glutSolidCube(0.5);
+    glPopMatrix();
+}
+
 void display(void){
 
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -1007,6 +1020,7 @@ void display(void){
 	}
 	
 	drawBehindBuilding();
+	drawYellowWall();
 
 	glFlush();
 	glutSwapBuffers();
