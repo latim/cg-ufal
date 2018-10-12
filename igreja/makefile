@@ -4,4 +4,4 @@ EXEC=ativ1
 OBJ=ativ1.o
 all: $(EXEC)
 ativ1: 
-	gcc igreja.c -framework OpenGL -framework GLUT -o igreja
+	g++ igreja.cpp  -w -framework CoreFoundation -framework OpenGL -framework GLUT -o igreja -stdlib=libc++ -std=c++11 -lsfml-graphics -lsfml-window -lsfml-system
