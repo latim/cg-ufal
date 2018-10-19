@@ -84,7 +84,7 @@ float debugx = 3.799980f;
 
 int controle = 0;
 
-GLuint textura[20];
+GLuint textura[9];
 
 void cameraViewUpdate(){
     lx = sin(angle);
@@ -94,7 +94,7 @@ void cameraViewUpdate(){
 
 int _index = 0;
 
-void loadTextureFromFile(char const *filename) {
+void loadTextureFile(char const *filename) {
 	int width, height;
 
 	sf::Image image;
@@ -119,15 +119,15 @@ void loadTextureFromFile(char const *filename) {
 }
 
 void loadTextures(){
-	loadTextureFromFile("texturas/parede.png");
-	loadTextureFromFile("texturas/janela.png");
-	loadTextureFromFile("texturas/porta.png");
-	loadTextureFromFile("texturas/meio_arco.png");
-	loadTextureFromFile("texturas/circulo_janela.png");
-	loadTextureFromFile("texturas/cadeira.png");
-	loadTextureFromFile("texturas/santos.png");
-	loadTextureFromFile("texturas/meio_arco_direito.png");
-	loadTextureFromFile("texturas/arco.png");
+	loadTextureFile("texturas/parede.png");
+	loadTextureFile("texturas/janela.png");
+	loadTextureFile("texturas/porta.png");
+	loadTextureFile("texturas/meio_arco.png");
+	loadTextureFile("texturas/circulo_janela.png");
+	loadTextureFile("texturas/cadeira.png");
+	loadTextureFile("texturas/santos.png");
+	loadTextureFile("texturas/meio_arco_direito.png");
+	loadTextureFile("texturas/arco.png");
 }
 
 void drawTemple() {
